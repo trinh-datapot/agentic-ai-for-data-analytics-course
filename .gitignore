@@ -1,0 +1,9 @@
+# Báo cáo do học viên tạo ra khi thực hành (không commit)
+*.report.html
+report.html
+output/
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
