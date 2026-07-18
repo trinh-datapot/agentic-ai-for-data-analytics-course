@@ -1,7 +1,7 @@
-# AI for Data Analytics — Repo thực hành khóa học
+# Agentic AI for Data Analytics — Repo thực hành khóa học
 
 Repo này chứa dữ liệu và tài liệu ngữ cảnh cho các buổi thực hành khóa
-**AI for Data Analytics (Basic)** của Datapot Analytics.
+**Agentic AI for Data Analytics** của Datapot Analytics.
 
 ## Cách dùng
 
