@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buổi 1 · Tài liệu học viên — AI for Data Analytics</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --blue-50: oklch(96.2% 0.0142 238);
+    --blue-100: oklch(91.3% 0.0328 238.2);
+    --blue-600: oklch(52.9% 0.1404 248.4);
+    --blue-700: oklch(44.3% 0.1226 250.8);
+    --blue-900: oklch(31.5% 0.081 258.1);
+    --blue-950: oklch(24.2% 0.0631 258.5);
+    --teal-500: oklch(70.9% 0.1014 177);
+    --teal-700: oklch(55.7% 0.0854 177.3);
+    --amber-500: oklch(78.9% 0.1478 72.1);
+    --amber-700: oklch(65.5% 0.1349 68.9);
+    --gray-0: oklch(100% 0 0);
+    --gray-50: oklch(97.5% 0.0045 258.3);
+    --gray-100: oklch(95.1% 0.0063 255.5);
+    --gray-200: oklch(92.1% 0.0092 258.3);
+    --gray-300: oklch(84.9% 0.0129 255.5);
+    --gray-600: oklch(50.2% 0.0261 254.5);
+    --gray-700: oklch(39.8% 0.0235 255.7);
+    --gray-900: oklch(22% 0.0157 256.8);
+    --fg: var(--gray-900);
+    --fg-muted: var(--gray-600);
+    --border: var(--gray-200);
+    --grad-brand: linear-gradient(135deg, var(--blue-950) 0%, var(--blue-600) 48%, oklch(65.7% 0.1334 238.6) 100%);
+    --font-display: "Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
+    --font-sans: "Public Sans","Segoe UI",system-ui,sans-serif;
+    --font-mono: "JetBrains Mono",ui-monospace,Consolas,monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans); color: var(--fg); background: var(--gray-100);
+    -webkit-font-smoothing: antialiased; line-height: 1.6;
+  }
+  .term { font-family: var(--font-mono); font-size: 0.85em; background: var(--gray-100); color: var(--blue-700); padding: 2px 7px; border-radius: 5px; }
+  strong { font-weight: 700; }
+  a { color: var(--blue-700); }
+
+  /* ---- page shell ---- */
+  .page { max-width: 860px; margin: 0 auto; background: var(--gray-0); box-shadow: 0 1px 40px oklch(0% 0 0 / 0.08); }
+
+  /* ---- cover ---- */
+  .cover { background: var(--grad-brand); color: #fff; padding: 56px 60px 48px; }
+  .cover .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; }
+  .cover .brand .mark { width: 24px; height: 24px; border-radius: 6px; background: #fff; display: grid; place-items: center; color: var(--blue-700); font-family: var(--font-display); font-weight: 800; font-size: 15px; }
+  .cover .brand b { font-family: var(--font-display); font-weight: 800; font-size: 17px; letter-spacing: -0.02em; }
+  .cover .brand small { font-weight: 600; opacity: 0.8; font-size: 12px; letter-spacing: 0.04em; }
+  .cover .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue-100); margin-bottom: 14px; }
+  .cover h1 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; font-size: clamp(30px, 5vw, 46px); margin-bottom: 18px; }
+  .cover .pills { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+  .cover .pill { font-size: 13.5px; padding: 7px 15px; border-radius: 999px; background: oklch(100% 0 0 / 0.15); border: 0.5px solid oklch(100% 0 0 / 0.25); }
+  .cover .doclabel { margin-top: 30px; font-size: 13px; color: var(--blue-100); border-top: 0.5px solid oklch(100% 0 0 / 0.2); padding-top: 16px; }
+
+  /* ---- table of contents ---- */
+  .toc { padding: 32px 60px; background: var(--gray-50); border-bottom: 0.5px solid var(--border); }
+  .toc h2 { font-family: var(--font-display); font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 16px; }
+  .toc ol { list-style: none; counter-reset: toc; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; }
+  .toc li { counter-increment: toc; }
+  .toc a { display: flex; gap: 12px; text-decoration: none; color: var(--fg); font-size: 15px; padding: 4px 0; }
+  .toc a:hover { color: var(--blue-700); }
+  .toc a::before { content: counter(toc, decimal-leading-zero); font-family: var(--font-mono); font-size: 12px; color: var(--blue-600); font-weight: 500; padding-top: 2px; }
+
+  /* ---- body sections ---- */
+  main { padding: 8px 60px 60px; }
+  section { padding: 40px 0 8px; border-bottom: 0.5px solid var(--border); }
+  section:last-child { border-bottom: 0; }
+  .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue-700); margin-bottom: 8px; }
+  h2.sh { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 3vw, 30px); letter-spacing: -0.01em; line-height: 1.2; color: var(--fg); margin-bottom: 18px; }
+  h2.sh .num { color: var(--gray-300); font-weight: 800; margin-right: 10px; }
+  p { font-size: 16.5px; line-height: 1.62; margin-bottom: 14px; }
+  p.muted { color: var(--fg-muted); }
+  .lead { font-size: 17.5px; }
+
+  ul.arrow { list-style: none; margin: 4px 0 16px; }
+  ul.arrow li { position: relative; padding-left: 28px; margin-bottom: 12px; font-size: 16.5px; line-height: 1.55; }
+  ul.arrow li::before { content: '→'; position: absolute; left: 0; color: var(--teal-700); font-weight: 700; }
+
+  /* callout / note */
+  .note { margin: 16px 0; font-size: 14.5px; line-height: 1.6; color: var(--fg-muted); background: var(--gray-50); border: 0.5px solid var(--border); border-left: 3px solid var(--gray-300); border-radius: 8px; padding: 14px 18px; }
+  .note.src { font-size: 13.5px; }
+  .note.src a { color: var(--blue-700); }
+
+  /* roadmap phases */
+  .phases { display: grid; gap: 12px; margin: 6px 0 12px; }
+  .phase { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 18px 20px; border: 0.5px solid var(--border); border-radius: 12px; background: var(--gray-50); }
+  .phase.now { border-color: var(--blue-100); background: var(--blue-50); box-shadow: 0 0 0 1px var(--blue-100); }
+  .phase .dot { width: 40px; height: 40px; border-radius: 999px; background: var(--gray-0); border: 2.5px solid var(--gray-300); color: var(--fg-muted); font-family: var(--font-display); font-weight: 800; font-size: 16px; display: grid; place-items: center; }
+  .phase.now .dot { background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
+  .phase .nm { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--blue-950); }
+  .phase .bs { font-family: var(--font-mono); font-size: 12.5px; color: var(--blue-700); margin-left: 8px; }
+  .phase .here { display: inline-block; margin-left: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #fff; background: var(--blue-600); padding: 2px 8px; border-radius: 999px; vertical-align: middle; }
+  .phase .tp { font-size: 14px; color: var(--fg-muted); margin: 4px 0; line-height: 1.45; }
+  .phase .goal { font-size: 13.5px; color: var(--teal-700); font-weight: 600; }
+
+  /* checklist */
+  .checklist { display: grid; gap: 12px; margin: 6px 0 12px; }
+  .checklist .item { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--gray-50); border: 0.5px solid var(--border); border-radius: 10px; font-size: 16px; font-weight: 600; }
+  .checklist .box { flex: none; width: 24px; height: 24px; border-radius: 6px; border: 2.5px solid var(--blue-600); }
+
+  /* questions */
+  .qlist { display: grid; gap: 12px; margin: 6px 0 12px; }
+  .qlist .q { position: relative; padding: 14px 18px 14px 54px; background: var(--blue-50); border: 0.5px solid var(--blue-100); border-radius: 10px; font-size: 16px; font-weight: 600; color: var(--blue-950); line-height: 1.4; }
+  .qlist .q::before { content: '?'; position: absolute; left: 16px; top: 14px; width: 26px; height: 26px; border-radius: 999px; background: var(--blue-600); color: #fff; font-family: var(--font-display); font-weight: 800; font-size: 15px; display: grid; place-items: center; }
+
+  /* contrast */
+  .contrast { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 8px 0 14px; }
+  .contrast .side { border-radius: 14px; padding: 22px 22px; }
+  .contrast .before { background: var(--gray-50); border: 0.5px solid var(--border); }
+  .contrast .after { background: var(--blue-50); border: 1px solid var(--blue-100); }
+  .contrast .lbl { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; }
+  .contrast .before .lbl { color: var(--fg-muted); }
+  .contrast .after .lbl { color: var(--blue-700); }
+  .contrast .big { font-family: var(--font-display); font-weight: 800; line-height: 1.12; margin-bottom: 10px; }
+  .contrast .before .big { font-size: 22px; color: var(--gray-700); }
+  .contrast .after .big { font-size: 40px; color: var(--blue-700); }
+  .contrast .sub { font-size: 14px; line-height: 1.4; }
+  .contrast .before .sub { color: var(--fg-muted); }
+  .contrast .after .sub { color: var(--blue-950); }
+
+  /* twocol can/cant */
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 8px 0 14px; }
+  .twocol .col { border-radius: 12px; padding: 18px 20px; border: 0.5px solid var(--border); }
+  .twocol .col.can { background: oklch(96.5% 0.03 165); border-color: oklch(88% 0.05 165); }
+  .twocol .col.cant { background: oklch(97% 0.03 70); border-color: oklch(89% 0.06 70); }
+  .twocol .col h3 { font-family: var(--font-display); font-size: 14px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 12px; }
+  .twocol .col.can h3 { color: var(--teal-700); }
+  .twocol .col.cant h3 { color: var(--amber-700); }
+  .twocol .col ul { list-style: none; }
+  .twocol .col ul li { font-size: 14.5px; margin-bottom: 10px; padding-left: 24px; position: relative; line-height: 1.45; }
+  .twocol .col.can ul li::before { content: '✓'; position: absolute; left: 0; color: var(--teal-700); font-weight: 700; }
+  .twocol .col.cant ul li::before { content: '✕'; position: absolute; left: 0; color: var(--amber-700); font-weight: 700; }
+
+  /* concept card */
+  .concept { display: grid; grid-template-columns: 60px 1fr; gap: 18px; align-items: start; }
+  .concept .big { width: 60px; height: 60px; border-radius: 16px; background: var(--blue-50); color: var(--blue-700); font-family: var(--font-display); font-weight: 800; font-size: 28px; display: grid; place-items: center; }
+
+  /* file rows */
+  .files { display: grid; gap: 12px; margin: 8px 0 14px; }
+  .filerow { display: grid; grid-template-columns: 92px 1fr; gap: 16px; padding: 16px 18px; border: 0.5px solid var(--border); border-radius: 10px; background: var(--gray-50); }
+  .filerow .ft { font-family: var(--font-mono); font-size: 14px; font-weight: 500; color: var(--blue-700); }
+  .filerow .fd { font-size: 15px; line-height: 1.5; }
+
+  /* APE definition */
+  .ape { display: grid; gap: 10px; margin: 8px 0 14px; }
+  .ape .row { padding: 14px 18px; border: 0.5px solid var(--border); border-radius: 10px; background: var(--gray-50); border-left: 3px solid var(--blue-600); font-size: 15.5px; line-height: 1.5; }
+  .ape .row .k { font-family: var(--font-display); font-weight: 800; color: var(--blue-700); }
+  .ape.sample .row.risk { border-left-color: var(--amber-500); }
+  .ape.sample .row.risk .k { color: var(--amber-700); }
+
+  /* prompt block */
+  .promptblock { margin: 10px 0 14px; background: var(--gray-50); border: 0.5px solid var(--border); border-left: 4px solid var(--blue-600); border-radius: 10px; padding: 16px 18px; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: var(--gray-700); white-space: pre-wrap; }
+
+  /* PDCA */
+  .pdca { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin: 8px 0 14px; }
+  .pdca .step { border: 0.5px solid var(--border); border-radius: 12px; padding: 16px 18px; background: var(--gray-50); }
+  .pdca .step .k { font-family: var(--font-display); font-weight: 800; color: var(--blue-600); font-size: 18px; margin-bottom: 5px; }
+  .pdca .step .v { font-size: 14.5px; color: var(--fg-muted); line-height: 1.45; }
+
+  /* takeaway / governance */
+  .takeaway { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 16px; padding: 26px 28px; margin: 8px 0 6px; }
+  .takeaway .goal { font-size: 18px; color: var(--blue-950); font-weight: 600; line-height: 1.5; }
+  .governance { background: var(--grad-brand); color: #fff; border-radius: 16px; padding: 24px 28px; margin: 16px 0 6px; }
+  .governance .lbl { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-100); margin-bottom: 10px; }
+  .governance p { font-size: 18px; line-height: 1.55; margin: 0; font-weight: 600; }
+
+  /* next session */
+  .next { display: flex; gap: 18px; align-items: flex-start; background: var(--gray-50); border: 0.5px solid var(--border); border-radius: 14px; padding: 22px 24px; margin-top: 8px; }
+  .next .arw { font-size: 30px; color: var(--blue-600); font-weight: 800; line-height: 1; }
+  .next .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-700); margin-bottom: 6px; }
+  .next h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--blue-950); margin-bottom: 8px; }
+
+  /* LAB divider band */
+  .labband { background: var(--grad-brand); color: #fff; border-radius: 18px; padding: 34px 34px 30px; margin: 40px 0 8px; }
+  .labband .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue-100); margin-bottom: 12px; }
+  .labband .tag { display: inline-block; font-family: var(--font-display); font-weight: 800; font-size: 13px; letter-spacing: 0.06em; background: oklch(100% 0 0 / 0.16); border: 0.5px solid oklch(100% 0 0 / 0.25); padding: 4px 12px; border-radius: 999px; margin-bottom: 14px; }
+  .labband h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 16px; }
+  .labband p { font-size: 16px; line-height: 1.55; color: var(--blue-100); margin-bottom: 16px; }
+  .labband .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
+  .labband .st { background: oklch(100% 0 0 / 0.12); border: 0.5px solid oklch(100% 0 0 / 0.2); border-radius: 12px; padding: 14px 16px; }
+  .labband .st .n { font-family: var(--font-mono); font-size: 12px; color: var(--blue-100); margin-bottom: 6px; }
+  .labband .st .t { font-size: 14.5px; font-weight: 600; line-height: 1.4; }
+  .labband .out { margin-top: 16px; font-size: 14.5px; color: #fff; border-top: 0.5px solid oklch(100% 0 0 / 0.2); padding-top: 14px; }
+  .labband .out b { font-family: var(--font-display); }
+  @media (max-width: 680px) { .labband .steps { grid-template-columns: 1fr; } }
+
+  footer { padding: 30px 60px 44px; background: var(--gray-900); color: var(--gray-300); font-size: 13px; }
+  footer b { color: var(--gray-0); font-family: var(--font-display); }
+
+  @media (max-width: 680px) {
+    .cover, .toc, main, footer { padding-left: 26px; padding-right: 26px; }
+    .toc ol { grid-template-columns: 1fr; }
+    .contrast, .twocol, .pdca { grid-template-columns: 1fr; }
+    .concept { grid-template-columns: 48px 1fr; gap: 14px; }
+    .concept .big { width: 48px; height: 48px; font-size: 22px; }
+  }
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; max-width: none; }
+    section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ===== COVER ===== -->
+  <header class="cover">
+    <div class="brand">
+      <span class="mark">D</span>
+      <b>Datapot</b><small>AI for Data Analytics</small>
+    </div>
+    <div class="eyebrow">Buổi 1 · Module 1 Khởi động</div>
+    <h1>Khởi động với Agentic AI: tạo báo cáo đầu tiên của bạn</h1>
+    <div class="pills">
+      <span class="pill">Đối tượng: analyst mới dùng AI agent</span>
+      <span class="pill">Sản phẩm: thực hiện báo cáo HTML đầu tiên</span>
+    </div>
+    <div class="doclabel">Tài liệu tổng hợp sau buổi học, dùng để xem lại và tự thực hành.</div>
+  </header>
+
+  <!-- ===== TOC ===== -->
+  <nav class="toc">
+    <h2>Nội dung buổi học</h2>
+    <ol>
+      <li><a href="#roadmap">Bản đồ khóa học</a></li>
+      <li><a href="#muctieu">Mục tiêu buổi học</a></li>
+      <li><a href="#congcu">Kiểm tra công cụ</a></li>
+      <li><a href="#khoigoi">Năng lực AI hôm nay</a></li>
+      <li><a href="#nentang">Kiến thức nền &amp; demo</a></li>
+      <li><a href="#kn-llm">Khái niệm 1 · AI (LLM)</a></li>
+      <li><a href="#kn-aogiac">Khái niệm 2 · Ảo giác</a></li>
+      <li><a href="#kn-prompt">Khái niệm 3 · Prompt &amp; ngữ cảnh</a></li>
+      <li><a href="#kn-agent">Khái niệm 4 · Agent</a></li>
+      <li><a href="#kn-skill">Khái niệm 5 · Kỹ năng (skills)</a></li>
+      <li><a href="#lamduoc">AI làm được &amp; chưa làm được</a></li>
+      <li><a href="#lab"><strong>LAB · Thực hành</strong></a></li>
+      <li><a href="#file">Các loại file</a></li>
+      <li><a href="#ape">Khung viết prompt APE</a></li>
+      <li><a href="#ape-mau">Prompt mẫu theo APE</a></li>
+      <li><a href="#pdca">Vòng lặp Plan-Do-Check-Adjust</a></li>
+      <li><a href="#baocao">Tạo báo cáo HTML đầu tiên</a></li>
+      <li><a href="#kiemtra">Tự kiểm tra &amp; điều chỉnh</a></li>
+      <li><a href="#takeaway">Key takeaway</a></li>
+      <li><a href="#buoi2">Chuẩn bị buổi 2</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- Bản đồ khóa học -->
+    <section id="roadmap">
+      <div class="kicker">Bản đồ khóa học · bạn đang ở đây</div>
+      <h2 class="sh">6 giai đoạn, 15 buổi</h2>
+      <div class="phases">
+        <div class="phase now">
+          <div class="dot">1</div>
+          <div>
+            <div><span class="nm">Khởi động</span><span class="bs">S1–S2</span><span class="here">đang ở đây</span></div>
+            <div class="tp">Làm quen công cụ AI, hiểu lifecycle, tổng quan project.</div>
+            <div class="goal">Mục tiêu: có báo cáo đầu tiên với AI.</div>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="dot">2</div>
+          <div>
+            <div><span class="nm">Chuẩn bị dữ liệu</span><span class="bs">S3–S5</span></div>
+            <div class="tp">Lên kế hoạch, kết nối dữ liệu, xây dựng chỉ số.</div>
+            <div class="goal">Mục tiêu: Data Dictionary, KPI tree.</div>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="dot">3</div>
+          <div>
+            <div><span class="nm">Xây dựng Model</span><span class="bs">S6–S8</span></div>
+            <div class="tp">Data model, DAX, kiểm thử + Checkpoint 1.</div>
+            <div class="goal">Mục tiêu: Model hoàn chỉnh, verified.</div>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="dot">4</div>
+          <div>
+            <div><span class="nm">Visualization</span><span class="bs">S9–S11</span></div>
+            <div class="tp">Thiết kế báo cáo, phân tích insight + Checkpoint 2.</div>
+            <div class="goal">Mục tiêu: Dashboard hoàn thiện.</div>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="dot">5</div>
+          <div>
+            <div><span class="nm">Triển khai</span><span class="bs">S12–S14</span></div>
+            <div class="tp">Maintain, chuẩn hóa, tích hợp Fabric.</div>
+            <div class="goal">Mục tiêu: hệ thống báo cáo chuẩn.</div>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="dot">6</div>
+          <div>
+            <div><span class="nm">Tổng kết</span><span class="bs">S15</span></div>
+            <div class="tp">Thuyết trình cuối khóa.</div>
+            <div class="goal">Mục tiêu: Demo &amp; Presentation.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mục tiêu -->
+    <section id="muctieu">
+      <div class="kicker">Mục tiêu buổi học</div>
+      <h2 class="sh">Sau buổi học, học viên làm được</h2>
+      <ul class="arrow">
+        <li>Hiểu được các khái niệm cơ bản về Agentic AI và khung prompt APE.</li>
+        <li>Phân loại việc AI làm được và chưa làm được.</li>
+        <li>Tạo một báo cáo HTML đầu tiên bằng AI theo vòng lặp Plan-Do-Check-Adjust.</li>
+      </ul>
+    </section>
+
+    <!-- Check-in công cụ -->
+    <section id="congcu">
+      <div class="kicker">Sẵn sàng công cụ</div>
+      <h2 class="sh">Kiểm tra công cụ trước khi bắt đầu</h2>
+      <div class="checklist">
+        <div class="item"><span class="box"></span>Máy tính đã cài Power BI Desktop chưa?</div>
+        <div class="item"><span class="box"></span>Đã tạo tài khoản GitHub chưa?</div>
+        <div class="item"><span class="box"></span>Đã clone repo khóa học về máy được chưa?</div>
+      </div>
+    </section>
+
+    <!-- Khơi gợi -->
+    <section id="khoigoi">
+      <div class="kicker">Năng lực AI hôm nay · Sử dụng AI để nâng cao hiệu suất công việc</div>
+      <h2 class="sh">Trước khi có AI, một báo cáo mất bao lâu của bạn?</h2>
+      <div class="qlist">
+        <div class="q">Một báo cáo bạn thường làm mất bao lâu để hoàn thành?</div>
+        <div class="q">Công đoạn nào ngốn thời gian nhất: lấy dữ liệu, làm sạch, hay dựng biểu đồ?</div>
+        <div class="q">Điều gì khiến bạn "ngại" nhất khi phải làm một báo cáo mới?</div>
+      </div>
+      <h2 class="sh" style="margin-top:28px">Từ một file dữ liệu thô đến báo cáo, chỉ trong vài phút</h2>
+      <div class="contrast">
+        <div class="side before">
+          <div class="lbl">Trước khi có AI</div>
+          <div class="big">vài ngày → vài tuần → vài tháng</div>
+          <div class="sub">thao tác lặp lại, đòi hỏi chuyên môn kỹ thuật</div>
+        </div>
+        <div class="side after">
+          <div class="lbl">Với Agentic AI</div>
+          <div class="big">vài phút</div>
+          <div class="sub">rào cản kỹ thuật gần như biến mất</div>
+        </div>
+      </div>
+      <p class="muted">Với sự hỗ trợ của AI, đặc biệt là Agentic AI, người làm phân tích dữ liệu tập trung vào câu hỏi kinh doanh thay vì vướng ở kỹ thuật dựng báo cáo.</p>
+    </section>
+
+    <!-- Kiến thức nền -->
+    <section id="nentang">
+      <div class="kicker">Kiến thức nền</div>
+      <h2 class="sh">Các khái niệm cần biết khi làm việc với AI Agent</h2>
+      <p class="lead">Năm khái niệm nền giúp bạn hiểu bản chất công cụ AI, để biết vì sao phải giao việc kèm ngữ cảnh và luôn kiểm chứng kết quả.</p>
+      <p class="muted">1 · AI (LLM)&nbsp;&nbsp;&nbsp;2 · Ảo giác&nbsp;&nbsp;&nbsp;3 · Prompt và ngữ cảnh&nbsp;&nbsp;&nbsp;4 · Agent&nbsp;&nbsp;&nbsp;5 · Kỹ năng (skills)</p>
+      <p>Prompt demo để agent hoạt động (chạy trên file <span class="term">sales_adventureworks.csv</span>):</p>
+      <div class="promptblock">Action (hành động): đọc file dữ liệu bán hàng sales_adventureworks.csv và dựng một báo cáo trang HTML tự chứa, có biểu đồ. Mỗi dòng là một dòng hàng trong đơn. Cột chính: Dt (ngày); Cat, SubCat, Prod (nhóm, loại, tên sản phẩm); Ctry, Rgn, City (quốc gia, vùng, thành phố); Channel (kênh bán); Amount (doanh thu); Qty (số lượng); UCost (giá vốn).
+
+Purpose (mục đích): giúp người quản lý kinh doanh nhìn nhanh bức tranh doanh thu theo sản phẩm, vùng và thời gian, để quyết định nên tập trung vào sản phẩm và vùng nào.
+
+Expectation (kết quả mong đợi): một trang HTML mở được trên trình duyệt, trả lời đúng ba câu hỏi:
+1. Doanh thu theo nhóm sản phẩm (Cat) và theo vùng (Rgn).
+2. Xu hướng doanh thu theo tháng.
+3. Top 5 thành phố theo doanh thu.
+Ràng buộc: mọi con số tính từ đúng dữ liệu trong file, không bịa số; nếu có cột không rõ nghĩa hoặc dữ liệu thiếu thì nêu ra thay vì tự suy đoán.</div>
+    </section>
+
+    <!-- Khái niệm 1 -->
+    <section id="kn-llm">
+      <div class="kicker">Kiến thức nền · 1/5</div>
+      <div class="concept">
+        <div class="big">1</div>
+        <div>
+          <h2 class="sh">AI (LLM) là gì</h2>
+          <p>AI dùng trong khóa là <strong>mô hình ngôn ngữ lớn (LLM - Large Language Model)</strong>, hoạt động theo cơ chế <strong>dự đoán từ (token) tiếp theo</strong> dựa trên xác suất, học từ lượng lớn văn bản. Vì đoán rất mượt nên câu trả lời nghe trôi chảy và tự tin.</p>
+          <p class="muted"><strong>Nhưng trôi chảy không đồng nghĩa với đúng.</strong> AI không truy cập số liệu thực tế trừ khi được kết nối.</p>
+          <div class="note src">Định nghĩa của Microsoft: <em>"Language models... represent natural language based on the probability of words or sequences of words occurring in a given context."</em> (Mô hình ngôn ngữ biểu diễn ngôn ngữ tự nhiên dựa trên xác suất của các từ, hoặc chuỗi từ, xuất hiện trong một ngữ cảnh cho trước.) Nguồn: <a href="https://learn.microsoft.com/en-us/azure/aks/concepts-ai-ml-language-models">Microsoft Learn</a> · <a href="https://aws.amazon.com/what-is/large-language-model/">AWS</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Khái niệm 2 -->
+    <section id="kn-aogiac">
+      <div class="kicker">Kiến thức nền · 2/5</div>
+      <div class="concept">
+        <div class="big">2</div>
+        <div>
+          <h2 class="sh">Ảo giác (hallucination)</h2>
+          <p>Ảo giác là khi AI đưa thông tin nghe hợp lý <strong>nhưng sai hoặc bịa</strong>. Với dữ liệu thực tế và đơn giản, model đời mới thường biết nói "không có dữ liệu" thay vì bịa, đó là dấu hiệu tốt.</p>
+          <p class="muted">Rủi ro nặng hơn: AI <strong>hiểu sai dữ liệu rồi tính ra số trông đúng nhưng sai</strong> (hay gặp ở buổi Data Model và DAX), khó nhận ra vì số vẫn từ dữ liệu thực tế. Vì vậy luôn phải kiểm chứng.</p>
+          <div class="note src">Microsoft xếp ảo giác (hallucination) là một giới hạn của LLM: <em>"LLMs might generate inaccurate or misleading information."</em> (Mô hình ngôn ngữ lớn có thể sinh ra thông tin không chính xác hoặc gây hiểu nhầm.) Nguồn: <a href="https://learn.microsoft.com/en-us/azure/developer/ai/gen-ai-concepts-considerations-developers">Microsoft Learn</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Khái niệm 3 -->
+    <section id="kn-prompt">
+      <div class="kicker">Kiến thức nền · 3/5</div>
+      <div class="concept">
+        <div class="big">3</div>
+        <div>
+          <h2 class="sh">Prompt và ngữ cảnh (context)</h2>
+          <p><strong>Prompt</strong> là yêu cầu giao cho AI. <strong>Ngữ cảnh</strong> là thông tin cung cấp kèm theo: tài liệu nghiệp vụ, dữ liệu, yêu cầu báo cáo. Giao việc rõ ràng và đúng tài liệu thì kết quả sát hơn.</p>
+          <p class="muted">Mỗi lần làm việc AI chỉ nhớ được một lượng thông tin giới hạn, nên cần cung cấp đúng và đủ, thay vì đưa mọi thứ cùng lúc. Đây là lý do buổi này có bước tạo tài liệu ngữ cảnh cho agent.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Khái niệm 4 -->
+    <section id="kn-agent">
+      <div class="kicker">Kiến thức nền · 4/5</div>
+      <div class="concept">
+        <div class="big">4</div>
+        <div>
+          <h2 class="sh">Agent là gì</h2>
+          <p>AI hỏi đáp trên trình duyệt chỉ trả lời bằng văn bản, <strong>không thao tác trực tiếp</strong>.</p>
+          <p><strong>Agent</strong> là AI đã được kết nối với công cụ qua cầu nối (MCP) để thao tác trực tiếp trên môi trường làm việc, ví dụ đọc dữ liệu và dựng báo cáo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Khái niệm 5 -->
+    <section id="kn-skill">
+      <div class="kicker">Kiến thức nền · 5/5</div>
+      <div class="concept">
+        <div class="big">5</div>
+        <div>
+          <h2 class="sh">Kỹ năng (skills)</h2>
+          <p>Để làm tốt một loại việc chuyên biệt (ví dụ dựng báo cáo Power BI đúng chuẩn), agent cần một <strong>bộ hướng dẫn quy trình đóng gói sẵn</strong>, gọi là kỹ năng (skill).</p>
+          <p class="muted">Công cụ (qua MCP) cho agent <strong>khả năng thao tác</strong>; skill cho agent <strong>quy trình làm đúng</strong>. Phần Power BI của khóa dựa trên bộ skill của Microsoft, giúp kết quả nhất quán.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI làm được / chưa làm được -->
+    <section id="lamduoc">
+      <div class="kicker">AI làm được và chưa làm được</div>
+      <h2 class="sh">AI làm được và chưa làm được</h2>
+      <div class="twocol">
+        <div class="col can">
+          <h3>✓ Làm được tốt</h3>
+          <ul>
+            <li>Tóm tắt, soạn nháp và diễn giải tài liệu</li>
+            <li>Phân loại và trích xuất thông tin từ văn bản</li>
+            <li>Sinh câu lệnh, code từ mô tả bằng lời</li>
+            <li>Trả lời câu hỏi dựa trên tài liệu được cung cấp</li>
+          </ul>
+        </div>
+        <div class="col cant">
+          <h3>✕ Chưa làm được / dễ sai</h3>
+          <ul>
+            <li>Tự truy cập dữ liệu thực tế khi chưa được kết nối</li>
+            <li>Đảm bảo con số luôn đúng (dễ ảo giác, bịa số)</li>
+            <li>Cập nhật thông tin sau thời điểm huấn luyện (knowledge cutoff)</li>
+            <li>Chịu trách nhiệm và thay người ra quyết định</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note src">Microsoft nêu giới hạn: LLM chỉ biết dữ liệu đến thời điểm huấn luyện, và nếu không kết nối dữ liệu ngoài thì không truy cập được thông tin thực tế hoặc riêng tư, và có thể sinh ra thông tin sai lệch. Vì vậy mọi kết quả đều phải kiểm chứng. Nguồn: <a href="https://learn.microsoft.com/en-us/azure/aks/concepts-ai-ml-language-models">Microsoft Learn</a> · <a href="https://aws.amazon.com/what-is/large-language-model/">AWS</a></div>
+    </section>
+
+    <!-- LAB divider (sau giải lao) -->
+    <section id="lab" style="border-bottom:0;padding-bottom:0">
+      <div class="labband">
+        <div class="tag">Phần 2 · LAB</div>
+        <div class="eyebrow">Sau giải lao · Bắt tay thực hành</div>
+        <h2>LAB: Tự tay dựng báo cáo HTML đầu tiên</h2>
+        <p>Nửa đầu buổi giúp bạn hiểu bản chất công cụ AI. Phần còn lại của buổi là thực hành: bạn vừa trang bị nhanh vài công cụ cần thiết, vừa tự tay làm ra sản phẩm. Mục tiêu của LAB là bạn tự làm được, không chỉ ngồi xem.</p>
+        <div class="steps">
+          <div class="st"><div class="n">Bước 1</div><div class="t">Nắm các loại file khi làm việc với agent</div></div>
+          <div class="st"><div class="n">Bước 2</div><div class="t">Viết prompt theo khung APE</div></div>
+          <div class="st"><div class="n">Bước 3</div><div class="t">Chạy agent theo vòng lặp Plan-Do-Check-Adjust</div></div>
+        </div>
+        <div class="out"><b>Sản phẩm cuối LAB:</b> một trang báo cáo HTML mở được trên trình duyệt, số liệu đã kiểm chứng.</div>
+      </div>
+    </section>
+
+    <!-- Các loại file -->
+    <section id="file">
+      <div class="kicker">Tài liệu ngữ cảnh của báo cáo</div>
+      <h2 class="sh">Các loại định dạng file khi làm việc với AI Agent</h2>
+      <div class="files">
+        <div class="filerow"><div class="ft">CSV</div><div class="fd">Bảng dữ liệu thô dạng văn bản, mỗi dòng một bản ghi, các cột ngăn bằng dấu phẩy, mở bằng Excel. <strong>Vai trò: chứa dữ liệu.</strong></div></div>
+        <div class="filerow"><div class="ft">.md<br><span style="font-size:11px;color:var(--fg-muted)">(Markdown)</span></div><div class="fd">Văn bản thuần chỉ gồm chữ với vài ký hiệu đơn giản, không có định dạng ẩn phức tạp nên AI đọc và sửa chính xác nhất. <strong>Vai trò: làm việc và ghi ngữ cảnh với AI.</strong></div></div>
+        <div class="filerow"><div class="ft">HTML</div><div class="fd">Ngôn ngữ tạo trang web, mở trực tiếp bằng trình duyệt, chứa được chữ, bảng và biểu đồ tương tác, không cần cài thêm phần mềm. <strong>Vai trò: trình bày báo cáo.</strong></div></div>
+      </div>
+      <p class="muted">Cả ba đều là văn bản thuần (plain text), mở được trên bất kỳ máy nào và không khóa trong một phần mềm riêng, đó là lý do AI làm việc tốt với chúng. Khi làm việc thì để ở <span class="term">.md</span>, lúc trình bày mới xuất sang HTML hoặc Power BI. Không nên bắt AI sửa trực tiếp Word hay PDF vì đây là các định dạng phức tạp, đóng gói nhiều định dạng ẩn (bố cục, font, style), riêng PDF còn cố định để in chứ không phải để chỉnh sửa, nên AI dễ làm hỏng cấu trúc hoặc sửa lệch, không chính xác như <span class="term">.md</span>.</p>
+    </section>
+
+    <!-- APE framework -->
+    <section id="ape">
+      <div class="kicker">Prompt framework</div>
+      <h2 class="sh">APE prompt framework</h2>
+      <div class="ape">
+        <div class="row"><span class="k">Action (hành động):</span> yêu cầu cụ thể giao cho AI.</div>
+        <div class="row"><span class="k">Purpose (mục đích):</span> làm để phục vụ ai, hỗ trợ quyết định gì.</div>
+        <div class="row"><span class="k">Expectation (kết quả mong đợi):</span> kết quả đúng trông ra sao, kèm ràng buộc (không bịa số).</div>
+      </div>
+      <p class="muted">Mỗi khi viết một prompt, luôn thêm một ý <strong>rủi ro khi sử dụng</strong>. APE là framework hỗ trợ cho bạn viết ra prompt tốt, việc bổ sung thêm ý rủi ro nhằm để bổ sung thông tin để kiểm chứng số liệu. Ngoài ra, bạn có thể tìm hiểu thêm các framework khác như: <span class="term">RTF</span>, <span class="term">CO-STAR</span>.</p>
+      <div class="note src">APE (Action–Purpose–Expectation) là framework do cộng đồng prompt engineering phổ biến, không phải chuẩn của một hãng cụ thể. Tài liệu tham khảo: <a href="https://aipromptsx.com/prompts/frameworks/ape">AiPromptsX</a> · <a href="https://fvivas.com/en/ape-framework-prompts-llm/">Fabio Vivas</a></div>
+    </section>
+
+    <!-- APE mẫu -->
+    <section id="ape-mau">
+      <div class="kicker">Prompt mẫu theo APE · chuẩn bị môi trường thực hành</div>
+      <h2 class="sh">Prompt mẫu trên dữ liệu bán hàng</h2>
+      <ul class="arrow">
+        <li>Mở <strong>VSCode</strong> đã đăng nhập <strong>GitHub Copilot</strong>.</li>
+        <li>Clone repo khóa học rồi mở trong VSCode: <span class="term">https://github.com/trinh-datapot/agentic-ai-for-data-analytics-course</span></li>
+      </ul>
+      <div class="ape sample">
+        <div class="row"><span class="k">ACTION:</span> đọc <span class="term">sales_adventureworks.csv</span> và dựng một trang HTML có biểu đồ.</div>
+        <div class="row"><span class="k">PURPOSE:</span> giúp quản lý kinh doanh nhìn nhanh doanh thu theo sản phẩm, vùng và thời gian.</div>
+        <div class="row"><span class="k">EXPECTATION:</span> trang HTML trả lời 3 câu hỏi (doanh thu theo nhóm sản phẩm và vùng; xu hướng theo tháng; top 5 thành phố); số khớp dữ liệu, không bịa số.</div>
+        <div class="row risk"><span class="k">RỦI RO:</span> agent có thể đọc sai cột hoặc suy đoán khi thiếu dữ liệu, cần kiểm chứng con số trước khi tin.</div>
+      </div>
+    </section>
+
+    <!-- PDCA -->
+    <section id="pdca">
+      <div class="kicker">Nguyên tắc làm việc với AI</div>
+      <h2 class="sh">Vòng lặp Plan-Do-Check-Adjust</h2>
+      <p class="muted">Cách làm việc để luôn kiểm soát kết quả AI, dùng xuyên suốt buổi và cả khóa.</p>
+      <div class="pdca">
+        <div class="step"><div class="k">Plan</div><div class="v">Lập kế hoạch: báo cáo trả lời câu hỏi gì.</div></div>
+        <div class="step"><div class="k">Do</div><div class="v">Thực hiện: giao agent dựng báo cáo.</div></div>
+        <div class="step"><div class="k">Check</div><div class="v">Kiểm tra: đối chiếu con số với dữ liệu thực tế.</div></div>
+        <div class="step"><div class="k">Adjust</div><div class="v">Điều chỉnh phần chưa đạt.</div></div>
+      </div>
+    </section>
+
+    <!-- Tạo báo cáo HTML -->
+    <section id="baocao">
+      <div class="kicker">Trọng tâm</div>
+      <h2 class="sh">Tạo báo cáo HTML đầu tiên theo PDCA</h2>
+      <ul class="arrow">
+        <li>Áp dụng 4 bước Plan-Do-Check-Adjust vào việc tạo báo cáo.</li>
+        <li>Trỏ agent vào <strong>ngữ cảnh có sẵn trong repo</strong> (<span class="term">org-context</span> và <span class="term">knowledge</span>), prompt sẽ ngắn hơn hẳn so với ban đầu.</li>
+        <li>Viết câu prompt: "đọc thư mục <span class="term">org-context</span> và <span class="term">knowledge</span>, rồi dựng report HTML trả lời các câu hỏi trong <span class="term">knowledge/reports/bao-cao-doanh-thu-tong-quan.md</span>".</li>
+      </ul>
+    </section>
+
+    <!-- Tự kiểm tra -->
+    <section id="kiemtra">
+      <div class="kicker">Check</div>
+      <h2 class="sh">Tự kiểm tra và điều chỉnh báo cáo</h2>
+      <ul class="arrow">
+        <li>Học viên kiểm tra kết quả của AI Agent tạo ra, và điều chỉnh.</li>
+        <li>Thực hiện đúng quy trình Plan-Do-Check-Adjust.</li>
+      </ul>
+    </section>
+
+    <!-- Key takeaway -->
+    <section id="takeaway">
+      <div class="kicker">Kết buổi</div>
+      <h2 class="sh">🎯 Key takeaway</h2>
+      <div class="takeaway">
+        <div class="goal">Bạn đã tự dựng môi trường AI và tạo một báo cáo HTML đầu tiên, hiểu AI làm được gì và chưa làm được.</div>
+      </div>
+      <div class="governance">
+        <div class="lbl">Nguyên tắc</div>
+        <p>AI hỗ trợ bạn làm việc nhanh hơn, nhưng bạn cần tuân theo quy trình PDCA để kiểm chứng và chịu trách nhiệm cho kết quả cuối cùng.</p>
+      </div>
+    </section>
+
+    <!-- Chuẩn bị buổi 2 -->
+    <section id="buoi2">
+      <div class="next">
+        <div class="arw">→</div>
+        <div>
+          <div class="eyebrow">Buổi sau · Module 2</div>
+          <h3>Nghiệp vụ dự án và nền tảng dữ liệu</h3>
+          <p style="margin:0">Nội dung buổi 2 bao gồm: dùng AI để quản trị nghiệp vụ có kiểm chứng, xây dựng Business Glossary cùng Data Dictionary cho dự án, và đăng ký thực hiện Final Project.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <b>Datapot Analytics</b> · AI for Data Analytics (Basic) · Buổi 1 — Tài liệu học viên.
+  </footer>
+
+</div>
+</body>
+</html>
