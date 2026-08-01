@@ -15,7 +15,11 @@ Repo này chứa dữ liệu và tài liệu ngữ cảnh cho các buổi thực
 
 ## Cấu trúc
 
-- `day-1/`: Buổi 1, tạo báo cáo HTML đầu tiên từ dữ liệu bán hàng AdventureWorks.
+- `day-1/`: Buổi 1, tạo báo cáo HTML đầu tiên từ dữ liệu bán hàng AdventureWorks (demo).
+- `day-2/`: Buổi 2, dựng nền nghiệp vụ và dữ liệu cho dự án thật (dataset VanArsdel). Khung dự án dựng sẵn:
+  `tai-lieu-nghiep-vu.md`, `org-context/` (business requirement, glossary, sources), `knowledge/` (profiling, data dictionary), `data/`.
+- `day-3/`: Buổi 3, lên kế hoạch phân tích. Khung thẻ báo cáo dựng sẵn trong
+  `knowledge/reports/bao-cao-cua-ban/`: yêu cầu phân tích, business question, Report Proposal, mockup, ý kiến duyệt.
 - (các buổi sau sẽ được bổ sung dần)
 
 ## Yêu cầu công cụ
