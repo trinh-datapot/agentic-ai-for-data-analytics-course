@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Mockup — Báo cáo đối chiếu Thực tế (Actuals) với Ngân sách (Budget)</title>
+<style>
+  :root{
+    --ink:#1f2933; --muted:#6b7785; --line:#dfe3e8; --bg:#f4f6f8; --card:#fff;
+    --pos:#2f9e44; --neg:#e03131; --bar:#4c6ef5; --bar2:#adb5bd; --warn:#f59f00;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:24px;background:var(--bg);color:var(--ink);
+       font-family:"Segoe UI",Roboto,Arial,sans-serif;font-size:14px;line-height:1.45}
+  .wrap{max-width:1160px;margin:0 auto}
+  header.top{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin-bottom:14px}
+  h1{font-size:20px;margin:0 0 4px}
+  .sub{color:var(--muted);font-size:13px}
+  .filters{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+  .filter{border:1px dashed var(--line);border-radius:6px;padding:6px 12px;background:#fafbfc;color:var(--muted);font-size:13px}
+  .band{margin:18px 0 10px;display:flex;align-items:center;gap:10px}
+  .band h2{font-size:15px;margin:0;text-transform:uppercase;letter-spacing:.04em}
+  .tag{font-size:11px;padding:3px 8px;border-radius:99px;font-weight:600}
+  .tag.ok{background:#e6fcf5;color:#0b7285}
+  .tag.wait{background:#fff4e6;color:#c47100}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+  .card .q{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.06em}
+  .card h3{font-size:14px;margin:6px 0 2px}
+  .card .why{font-size:12px;color:var(--muted);margin-bottom:12px}
+  .kpi .lbl{font-size:12px;color:var(--muted)}
+  .kpi .val{font-size:22px;font-weight:700;margin-top:4px}
+  .kpi .val.neg{color:var(--neg)} .kpi .val.pos{color:var(--pos)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right}
+  th:first-child,td:first-child{text-align:left}
+  th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+  .rowlbl{width:112px;font-size:12px;color:var(--ink)}
+  .divbar{position:relative;height:16px;background:#f1f3f5;border-radius:3px}
+  .divbar .zero{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:#adb5bd}
+  .divbar span{position:absolute;top:0;bottom:0;border-radius:3px}
+  .barrow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .barrow .num{width:62px;font-size:12px;text-align:right;font-variant-numeric:tabular-nums}
+  .track{flex:1;height:14px;background:#f1f3f5;border-radius:3px;overflow:hidden}
+  .track i{display:block;height:100%;background:var(--bar)}
+  .track i.alt{background:var(--bar2)}
+  .heat{display:grid;grid-template-columns:80px repeat(12,1fr);gap:3px;font-size:10px}
+  .heat div{padding:5px 2px;text-align:center;border-radius:3px}
+  .heat .h{color:var(--muted);background:none}
+  .heat .r{text-align:left;color:var(--ink);background:none;font-size:11px;padding-left:0}
+  .mock{position:relative}
+  .mock::after{content:"SỐ MINH HỌA";position:absolute;top:12px;right:14px;font-size:10px;
+    font-weight:700;color:var(--warn);border:1px solid var(--warn);border-radius:4px;padding:2px 6px;background:#fffbf0}
+  .note{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--warn);
+        border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px}
+  .note ul{margin:8px 0 0;padding-left:18px} .note li{margin-bottom:4px}
+  .legend{font-size:11px;color:var(--muted);margin-top:8px}
+  footer{margin-top:18px;font-size:12px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>Báo cáo đối chiếu Thực tế (Actuals) với Ngân sách (Budget)</h1>
+  <div class="sub">Mockup phác để xin duyệt · Nhóm ngành hàng (Category) × Phân khúc (Segment) × tháng · nguồn: <code>report-proposal.md</code></div>
+  <div class="filters">
+    <div class="filter">Năm: 2016 ▾</div>
+    <div class="filter">Nhóm ngành hàng (Category): Tất cả ▾</div>
+    <div class="filter">Phân khúc (Segment): Tất cả ▾</div>
+    <div class="filter">Loại chỉ tiêu: Budget / Forecast ▾</div>
+  </div>
+</header>
+
+<div class="band">
+  <h2>Khối A — Kế hoạch (Forecast) và Ngân sách (Budget)</h2>
+  <span class="tag ok">số thật từ VanArsdel_Budget.csv</span>
+</div>
+
+<div class="cards">
+  <div class="card kpi"><div class="lbl">Tổng Ngân sách (Budget) 2016</div><div class="val">10.986.388</div></div>
+  <div class="card kpi"><div class="lbl">Tổng Kế hoạch (Forecast) 2016</div><div class="val">10.991.884</div></div>
+  <div class="card kpi"><div class="lbl">Lệch Forecast − Budget</div><div class="val pos">+5.496 · +0,05%</div></div>
+  <div class="card kpi"><div class="lbl">Số Phân khúc lệch &gt; 2%</div><div class="val">5 / 9</div></div>
+</div>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="q">A1</div>
+    <h3>Kế hoạch (Forecast) 2016 lệch bao nhiêu so với Ngân sách (Budget) 2016?</h3>
+    <div class="why">Ban lãnh đạo · phục vụ điều chỉnh kế hoạch · % lệch = (Forecast − Budget) / Budget, theo 9 Phân khúc (Segment)</div>
+    <table><tbody>
+      <tr><td class="rowlbl">Select</td><td style="width:60%"><div class="divbar"><div class="zero"></div><span style="left:50%;width:24.7%;background:var(--pos)"></span></div></td><td style="width:60px;color:var(--pos)">+2,96%</td></tr>
+      <tr><td class="rowlbl">Productivity</td><td><div class="divbar"><div class="zero"></div><span style="left:50%;width:24.3%;background:var(--pos)"></span></div></td><td style="color:var(--pos)">+2,92%</td></tr>
+      <tr><td class="rowlbl">Convenience</td><td><div class="divbar"><div class="zero"></div><span style="left:50%;width:20.3%;background:var(--pos)"></span></div></td><td style="color:var(--pos)">+2,43%</td></tr>
+      <tr><td class="rowlbl">Regular</td><td><div class="divbar"><div class="zero"></div><span style="left:50%;width:4.7%;background:var(--pos)"></span></div></td><td style="color:var(--pos)">+0,56%</td></tr>
+      <tr><td class="rowlbl">Accessory</td><td><div class="divbar"><div class="zero"></div><span style="left:46.4%;width:3.6%;background:var(--neg)"></span></div></td><td style="color:var(--neg)">−0,43%</td></tr>
+      <tr><td class="rowlbl">Extreme</td><td><div class="divbar"><div class="zero"></div><span style="left:46.3%;width:3.7%;background:var(--neg)"></span></div></td><td style="color:var(--neg)">−0,44%</td></tr>
+      <tr><td class="rowlbl">Moderation</td><td><div class="divbar"><div class="zero"></div><span style="left:41.7%;width:8.3%;background:var(--neg)"></span></div></td><td style="color:var(--neg)">−0,99%</td></tr>
+      <tr><td class="rowlbl">All Season</td><td><div class="divbar"><div class="zero"></div><span style="left:31.2%;width:18.8%;background:var(--neg)"></span></div></td><td style="color:var(--neg)">−2,26%</td></tr>
+      <tr><td class="rowlbl">Youth</td><td><div class="divbar"><div class="zero"></div><span style="left:30.7%;width:19.3%;background:var(--neg)"></span></div></td><td style="color:var(--neg)">−2,32%</td></tr>
+    </tbody></table>
+    <div class="legend">Mốc giữa = 0. Xanh: Forecast cao hơn Budget · Đỏ: thấp hơn.</div>
+  </div>
+
+  <div class="card">
+    <div class="q">A2</div>
+    <h3>Ngân sách (Budget) 2016 tăng hay giảm so với 2015?</h3>
+    <div class="why">Ban lãnh đạo · phục vụ quyết định về danh mục · tổng 12 tháng theo 5 Nhóm ngành hàng (Category)</div>
+    <table>
+      <thead><tr><th>Category</th><th>B2016</th><th>B2015</th><th>% thay đổi</th></tr></thead>
+      <tbody>
+        <tr><td>Urban</td><td>9.226.087</td><td>9.412.421</td><td style="color:var(--neg)">−1,98%</td></tr>
+        <tr><td>Accessory</td><td>897.093</td><td>893.599</td><td style="color:var(--pos)">+0,39%</td></tr>
+        <tr><td>Mix</td><td>769.811</td><td>772.909</td><td style="color:var(--neg)">−0,40%</td></tr>
+        <tr><td>Youth</td><td>89.570</td><td>87.208</td><td style="color:var(--pos)">+2,71%</td></tr>
+        <tr><td>Rural</td><td>3.827</td><td>3.921</td><td style="color:var(--neg)">−2,38%</td></tr>
+      </tbody>
+    </table>
+    <div class="legend">Bản thật: bar đôi B2016 / B2015. Chưa gắn đơn vị tiền tệ (rủi ro R2).</div>
+  </div>
+
+  <div class="card">
+    <div class="q">A3</div>
+    <h3>Nhóm nào chiếm tỷ trọng lớn nhất trong Ngân sách (Budget) 2016?</h3>
+    <div class="why">Ban lãnh đạo · phục vụ quyết định về danh mục · % tỷ trọng trên tổng Budget 2016</div>
+    <div class="barrow"><div class="rowlbl">Urban</div><div class="track"><i style="width:83.98%"></i></div><div class="num">83,98%</div></div>
+    <div class="barrow"><div class="rowlbl">Accessory</div><div class="track"><i style="width:8.17%"></i></div><div class="num">8,17%</div></div>
+    <div class="barrow"><div class="rowlbl">Mix</div><div class="track"><i style="width:7.01%"></i></div><div class="num">7,01%</div></div>
+    <div class="barrow"><div class="rowlbl">Youth</div><div class="track"><i style="width:0.82%"></i></div><div class="num">0,82%</div></div>
+    <div class="barrow"><div class="rowlbl">Rural</div><div class="track"><i style="width:0.03%"></i></div><div class="num">0,03%</div></div>
+    <div class="legend">Dùng bảng + thanh, không dùng biểu đồ tròn: Urban gấp Rural ~1.600 lần (rủi ro R5).</div>
+  </div>
+
+  <div class="card">
+    <div class="q">A4</div>
+    <h3>Ngân sách (Budget) 2016 phân bổ theo tháng thế nào?</h3>
+    <div class="why">Ban lãnh đạo · phục vụ điều chỉnh kế hoạch · tổng Budget theo 12 tháng, tìm tháng đỉnh</div>
+    <svg viewBox="0 0 520 190" width="100%" height="190" role="img" aria-label="Đường Budget 2016 theo 12 tháng">
+      <line x1="40" y1="160" x2="510" y2="160" stroke="#dfe3e8"/>
+      <line x1="40" y1="20" x2="40" y2="160" stroke="#dfe3e8"/>
+      <polyline fill="none" stroke="#4c6ef5" stroke-width="2"
+        points="52,146 91,137 130,26 169,20 208,41 247,42 286,42 325,34 364,72 403,94 442,105 481,117"/>
+      <circle cx="169" cy="20" r="4" fill="#4c6ef5"/>
+      <text x="176" y="17" font-size="10" fill="#4c6ef5">đỉnh: Apr 1.341.300</text>
+      <circle cx="481" cy="117" r="3.5" fill="#adb5bd"/>
+      <text x="404" y="134" font-size="10" fill="#6b7785">thấp nhất: Dec 470.346</text>
+      <g font-size="10" fill="#6b7785">
+        <text x="44" y="176">Jan</text><text x="83" y="176">Feb</text><text x="122" y="176">Mar</text>
+        <text x="161" y="176">Apr</text><text x="200" y="176">May</text><text x="239" y="176">Jun</text>
+        <text x="278" y="176">Jul</text><text x="317" y="176">Aug</text><text x="356" y="176">Sep</text>
+        <text x="395" y="176">Oct</text><text x="434" y="176">Nov</text><text x="473" y="176">Dec</text>
+      </g>
+    </svg>
+    <div class="legend">Tháng đọc theo thứ tự Jan→Dec (file gốc xếp ngược Dec→Jan).</div>
+  </div>
+
+</div>
+
+<div class="band">
+  <h2>Khối B — Đối chiếu Thực tế (Actuals)</h2>
+  <span class="tag wait">chờ VanArsdel_Actuals.xlsx · số minh họa</span>
+</div>
+
+<div class="grid">
+
+  <div class="card mock">
+    <div class="q">B1</div>
+    <h3>Thực tế (Actuals) đạt bao nhiêu % Ngân sách (Budget) theo tháng?</h3>
+    <div class="why">Ban lãnh đạo · phục vụ điều chỉnh kế hoạch · % đạt ngân sách = Actuals / Budget, Category × 12 tháng</div>
+    <div class="heat">
+      <div class="h"></div><div class="h">J</div><div class="h">F</div><div class="h">M</div><div class="h">A</div><div class="h">M</div><div class="h">J</div><div class="h">J</div><div class="h">A</div><div class="h">S</div><div class="h">O</div><div class="h">N</div><div class="h">D</div>
+      <div class="r">Urban</div>
+      <div style="background:#d3f9d8">104</div><div style="background:#ffe3e3">92</div><div style="background:#d3f9d8">107</div><div style="background:#b2f2bb">111</div><div style="background:#ffe3e3">96</div><div style="background:#d3f9d8">102</div><div style="background:#d3f9d8">105</div><div style="background:#b2f2bb">113</div><div style="background:#ffe3e3">94</div><div style="background:#ffc9c9">88</div><div style="background:#d3f9d8">101</div><div style="background:#d3f9d8">103</div>
+      <div class="r">Accessory</div>
+      <div style="background:#ffe3e3">95</div><div style="background:#ffe3e3">93</div><div style="background:#d3f9d8">101</div><div style="background:#d3f9d8">106</div><div style="background:#b2f2bb">112</div><div style="background:#d3f9d8">108</div><div style="background:#d3f9d8">104</div><div style="background:#ffe3e3">97</div><div style="background:#ffe3e3">91</div><div style="background:#ffe3e3">96</div><div style="background:#d3f9d8">102</div><div style="background:#d3f9d8">100</div>
+      <div class="r">Mix</div>
+      <div style="background:#ffc9c9">86</div><div style="background:#ffe3e3">90</div><div style="background:#ffe3e3">94</div><div style="background:#d3f9d8">103</div><div style="background:#d3f9d8">109</div><div style="background:#b2f2bb">115</div><div style="background:#b2f2bb">110</div><div style="background:#d3f9d8">105</div><div style="background:#ffe3e3">98</div><div style="background:#ffe3e3">92</div><div style="background:#ffc9c9">87</div><div style="background:#ffe3e3">95</div>
+      <div class="r">Youth</div>
+      <div style="background:#d3f9d8">102</div><div style="background:#d3f9d8">104</div><div style="background:#b2f2bb">118</div><div style="background:#b2f2bb">121</div><div style="background:#b2f2bb">114</div><div style="background:#d3f9d8">107</div><div style="background:#d3f9d8">103</div><div style="background:#d3f9d8">101</div><div style="background:#ffe3e3">97</div><div style="background:#ffe3e3">99</div><div style="background:#d3f9d8">106</div><div style="background:#b2f2bb">110</div>
+      <div class="r">Rural</div>
+      <div style="background:#ffc9c9">74</div><div style="background:#ffc9c9">81</div><div style="background:#ffe3e3">93</div><div style="background:#ffe3e3">97</div><div style="background:#d3f9d8">101</div><div style="background:#ffe3e3">95</div><div style="background:#ffc9c9">83</div><div style="background:#ffc9c9">79</div><div style="background:#ffc9c9">85</div><div style="background:#ffe3e3">90</div><div style="background:#ffe3e3">96</div><div style="background:#ffc9c9">82</div>
+    </div>
+    <div class="legend">Xanh ≥ 100% = vượt kế hoạch · Đỏ &lt; 100% = hụt so với dự kiến. Ngưỡng tạm là 100% (rủi ro R3).</div>
+  </div>
+
+  <div class="card mock">
+    <div class="q">B2</div>
+    <h3>Phân khúc (Segment) nào vượt kế hoạch, phân khúc nào hụt so với dự kiến?</h3>
+    <div class="why">Ban lãnh đạo · phục vụ điều chỉnh kế hoạch · chênh lệch Actuals − Budget theo 9 Segment</div>
+    <table><tbody>
+      <tr><td class="rowlbl">Moderation</td><td style="width:58%"><div class="divbar"><div class="zero"></div><span style="left:50%;width:35%;background:var(--pos)"></span></div></td><td style="width:74px;color:var(--pos)">+412.900</td></tr>
+      <tr><td class="rowlbl">Convenience</td><td><div class="divbar"><div class="zero"></div><span style="left:50%;width:21%;background:var(--pos)"></span></div></td><td style="color:var(--pos)">+248.100</td></tr>
+      <tr><td class="rowlbl">Youth</td><td><div class="divbar"><div class="zero"></div><span style="left:50%;width:8%;background:var(--pos)"></span></div></td><td style="color:var(--pos)">+9.400</td></tr>
+      <tr><td class="rowlbl">Regular</td><td><div class="divbar"><div class="zero"></div><span style="left:50%;width:2%;background:var(--pos)"></span></div></td><td style="color:var(--pos)">+310</td></tr>
+      <tr><td class="rowlbl">Select</td><td><div class="divbar"><div class="zero"></div><span style="left:48.5%;width:1.5%;background:var(--neg)"></span></div></td><td style="color:var(--neg)">−240</td></tr>
+      <tr><td class="rowlbl">Extreme</td><td><div class="divbar"><div class="zero"></div><span style="left:44%;width:6%;background:var(--neg)"></span></div></td><td style="color:var(--neg)">−17.800</td></tr>
+      <tr><td class="rowlbl">Accessory</td><td><div class="divbar"><div class="zero"></div><span style="left:38%;width:12%;background:var(--neg)"></span></div></td><td style="color:var(--neg)">−52.600</td></tr>
+      <tr><td class="rowlbl">Productivity</td><td><div class="divbar"><div class="zero"></div><span style="left:32%;width:18%;background:var(--neg)"></span></div></td><td style="color:var(--neg)">−86.300</td></tr>
+      <tr><td class="rowlbl">All Season</td><td><div class="divbar"><div class="zero"></div><span style="left:22%;width:28%;background:var(--neg)"></span></div></td><td style="color:var(--neg)">−131.500</td></tr>
+    </tbody></table>
+    <div class="legend">Danh sách bên trên mốc 0 = vượt kế hoạch · bên dưới = hụt so với dự kiến.</div>
+  </div>
+
+  <div class="card mock">
+    <div class="q">B3</div>
+    <h3>Phân khúc nào vượt kế hoạch liên tục nhiều tháng nhất?</h3>
+    <div class="why">Ban lãnh đạo · phục vụ quyết định về danh mục (dư địa tăng trưởng) · số tháng có Actuals − Budget &gt; 0</div>
+    <table>
+      <thead><tr><th>Segment</th><th>Số tháng vượt</th><th>Chuỗi dài nhất</th></tr></thead>
+      <tbody>
+        <tr><td>Moderation</td><td>10 / 12</td><td>6 tháng (Mar–Aug)</td></tr>
+        <tr><td>Convenience</td><td>8 / 12</td><td>4 tháng (Apr–Jul)</td></tr>
+        <tr><td>Youth</td><td>8 / 12</td><td>3 tháng (Feb–Apr)</td></tr>
+        <tr><td>Regular</td><td>6 / 12</td><td>2 tháng</td></tr>
+        <tr><td>All Season</td><td>2 / 12</td><td>1 tháng</td></tr>
+      </tbody>
+    </table>
+    <div class="legend">Bản thật hiển thị thêm dải 12 ô tháng, ô xanh = tháng vượt kế hoạch.</div>
+  </div>
+
+  <div class="card mock">
+    <div class="q">B4</div>
+    <h3>Kế hoạch (Forecast) hay Ngân sách (Budget) sát Thực tế (Actuals) hơn?</h3>
+    <div class="why">Ban lãnh đạo · phục vụ điều chỉnh kế hoạch kỳ sau · sai số tuyệt đối trung bình, năm 2016</div>
+    <table>
+      <thead><tr><th>Segment</th><th>|Actuals − Forecast|</th><th>|Actuals − Budget|</th><th>Sát hơn</th></tr></thead>
+      <tbody>
+        <tr><td>Moderation</td><td>38.400</td><td>52.100</td><td>Forecast</td></tr>
+        <tr><td>Convenience</td><td>21.700</td><td>19.900</td><td>Budget</td></tr>
+        <tr><td>Accessory</td><td>7.300</td><td>9.800</td><td>Forecast</td></tr>
+        <tr><td>All Season</td><td>6.100</td><td>5.400</td><td>Budget</td></tr>
+        <tr><td>Select</td><td>42</td><td>55</td><td>Forecast</td></tr>
+      </tbody>
+    </table>
+    <div class="legend">Chỉ tính được cho năm 2016 — dữ liệu không có Kế hoạch (Forecast) cho 2015.</div>
+  </div>
+
+</div>
+
+<div class="note">
+  <strong>Điểm cần duyệt / điều kiện tiên quyết</strong>
+  <ul>
+    <li><strong>R1</strong> — <code>VanArsdel_Actuals.xlsx</code> chưa có: toàn bộ khối B đang là số minh họa. Nếu tới ngày duyệt vẫn chưa có, đề nghị duyệt bản chỉ có khối A.</li>
+    <li><strong>R2</strong> — Chưa xác nhận đơn vị và ý nghĩa giá trị Budget (là Doanh thu? đơn vị tiền tệ nào) nên mockup không ghi đơn vị.</li>
+    <li><strong>R3</strong> — Ngưỡng <em>vượt kế hoạch</em> / <em>hụt so với dự kiến</em> tạm dùng mốc chênh lệch bằng 0 (tức 100% ngân sách).</li>
+    <li><strong>R5</strong> — Urban chiếm 83,98% tổng Budget 2016, Rural 0,03%: A3 dùng bảng + thanh, A1/B2 dùng % và bar phân kỳ để nhóm nhỏ không bị mất.</li>
+    <li>Bốn chỉ số phái sinh (% đạt ngân sách, chênh lệch Actuals − Budget, sai số tuyệt đối trung bình, tỷ trọng) cần bổ sung vào Business Glossary nếu được duyệt.</li>
+  </ul>
+</div>
+
+<footer>Mockup phác — chưa phải báo cáo thật. Khối A: số thật từ <code>VanArsdel_Budget.csv</code>. Khối B: số minh họa.</footer>
+
+</div>
+</body>
+</html>
