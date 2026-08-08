@@ -1,5 +1,5 @@
 ---
-description: Dựng hoặc sửa mô hình dữ liệu trong Power BI qua MCP, gồm bảng, mối quan hệ và measure DAX.
+description: Buổi 6 · Dựng hoặc sửa mô hình dữ liệu trong Power BI qua MCP, gồm bảng, mối quan hệ và measure DAX.
 argument-hint: phần model cần dựng hoặc sửa
 ---
 

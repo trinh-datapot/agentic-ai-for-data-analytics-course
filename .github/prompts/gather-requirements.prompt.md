@@ -1,5 +1,5 @@
 ---
-description: Biến một yêu cầu báo cáo chưa rõ ràng thành bản yêu cầu phân tích, business question và Report Proposal duyệt được.
+description: Buổi 3 · Biến một yêu cầu báo cáo chưa rõ ràng thành bản yêu cầu phân tích, business question và Report Proposal duyệt được.
 argument-hint: yêu cầu báo cáo cần làm rõ
 ---
 

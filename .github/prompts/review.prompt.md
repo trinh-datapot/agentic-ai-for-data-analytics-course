@@ -1,5 +1,5 @@
 ---
-description: Rà soát đối kháng toàn bộ dự án trước một cửa nghiệm thu, kết luận đi tiếp hay dừng.
+description: Buổi 8 · Rà soát đối kháng toàn bộ dự án trước một cửa nghiệm thu, kết luận đi tiếp hay dừng.
 argument-hint: phạm vi cần rà soát, ví dụ toàn bộ dự án trước Checkpoint 1
 ---
 

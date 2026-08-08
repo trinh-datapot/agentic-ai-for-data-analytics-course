@@ -1,5 +1,5 @@
 ---
-description: Khảo sát một nguồn dữ liệu lần đầu một cách an toàn, rồi ghi kết quả thành thẻ nguồn.
+description: Buổi 2 · Khảo sát một nguồn dữ liệu lần đầu một cách an toàn, rồi ghi kết quả thành thẻ nguồn.
 argument-hint: tên file hoặc tên bảng cần khảo sát
 ---
 

@@ -1,5 +1,5 @@
 ---
-description: Kiểm chứng một con số, một measure, một mô hình hoặc một file trước khi chia sẻ, và kết luận đạt hay lệch kèm bằng chứng.
+description: Buổi 7 · Kiểm chứng một con số, một measure, một mô hình hoặc một file trước khi chia sẻ, và kết luận đạt hay lệch kèm bằng chứng.
 argument-hint: đối tượng cần kiểm chứng, ví dụ measure Doanh thu
 ---
 

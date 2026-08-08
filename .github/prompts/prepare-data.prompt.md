@@ -1,5 +1,5 @@
 ---
-description: Làm sạch và biến đổi dữ liệu thô thành bộ dữ liệu sẵn sàng đưa vào mô hình, kèm bản ghi xử lý.
+description: Buổi 4 · Làm sạch và biến đổi dữ liệu thô thành bộ dữ liệu sẵn sàng đưa vào mô hình, kèm bản ghi xử lý.
 argument-hint: bảng hoặc file cần làm sạch
 ---
 
