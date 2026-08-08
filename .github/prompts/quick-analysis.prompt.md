@@ -1,5 +1,5 @@
 ---
-description: Buổi 1 · Phân tích nhanh dữ liệu của dự án và kết xuất thành một trang báo cáo HTML tự chứa.
+description: Phân tích nhanh dữ liệu của dự án và kết xuất thành một trang báo cáo HTML tự chứa.
 argument-hint: câu hỏi kinh doanh cần trả lời, hoặc tên thẻ báo cáo cần dựng
 ---
 

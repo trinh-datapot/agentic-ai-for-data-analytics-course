@@ -1,5 +1,5 @@
 ---
-description: Buổi 5 · Dựng KPI tree từ business question, chọn bộ chỉ số ưu tiên và viết thẻ chỉ số.
+description: Dựng KPI tree từ business question, chọn bộ chỉ số ưu tiên và viết thẻ chỉ số.
 argument-hint: KPI chính hoặc lĩnh vực cần phân rã
 ---
 
