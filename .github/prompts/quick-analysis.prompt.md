@@ -8,19 +8,19 @@ argument-hint: câu hỏi kinh doanh cần trả lời, hoặc tên thẻ báo c
 Trả lời một câu hỏi kinh doanh bằng số liệu tính từ dữ liệu thực tế của dự án, và kết xuất thành
 một trang HTML mở được trên trình duyệt.
 
-## Khi nào dùng
+## Tình huống sử dụng
 
 Khi học viên cần một cắt lát số liệu ("doanh thu theo vùng năm nay") hoặc một trang báo cáo tổng
 hợp các câu hỏi đã có trong thẻ báo cáo.
 
-## Khi nào không dùng
+## Tình huống không nên dùng
 
 - Hỏi định nghĩa một thuật ngữ hoặc nguồn gốc một trường dữ liệu: trả lời trực tiếp từ
   `org-context/glossary.md` và thẻ nguồn, không cần dựng báo cáo.
 - Số liệu đang nghi sai: dùng `/check`.
 - Dựng trang báo cáo trong Power BI: việc đó thuộc các buổi sau, không làm ở đây.
 
-## Đầu vào bắt buộc
+## Yêu cầu đầu vào
 
 Trước khi tính bất kỳ số nào, đọc:
 
@@ -31,12 +31,12 @@ Trước khi tính bất kỳ số nào, đọc:
 
 Thiếu ngữ cảnh thì hỏi lại, không đoán.
 
-## Các bước
+## Các bước thực hiện
 
 1. **Xác định phạm vi.** Nêu lại: câu hỏi nào cần trả lời, ai đọc báo cáo, dữ liệu lấy từ file nào.
 2. **Nêu cách tính trước khi tính.** Với mỗi câu hỏi, nói rõ sẽ dùng cột nào, phép tính nào, lọc gì.
    Nếu một cột có điểm cần lưu ý trong thẻ nguồn, nêu ra ngay tại đây.
-3. **Cửa duyệt.** Trình bày phạm vi và cách tính, dừng lại chờ học viên xác nhận. Không kết xuất
+3. **Điểm dừng phê duyệt.** Trình bày phạm vi và cách tính, dừng lại chờ học viên xác nhận. Không kết xuất
    báo cáo khi chưa được duyệt.
 4. **Tính số liệu từ dữ liệu thực tế.** Đọc trực tiếp file dữ liệu. Không ước lượng, không dùng số
    nhớ từ lượt trước.
@@ -45,12 +45,12 @@ Thiếu ngữ cảnh thì hỏi lại, không đoán.
 6. **Tự kiểm chứng.** Báo lại một mốc kiểm chứng để học viên đối chiếu: tổng của chỉ số chính trên
    toàn bộ dữ liệu, và số dòng đã đọc. Nêu rõ nếu có dòng bị loại và lý do.
 
-## Sản phẩm ra
+## Kết quả đầu ra
 
 - Một file HTML trong thư mục của buổi học, đặt tên theo nội dung báo cáo.
 - Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
 
-## Không được làm
+## Ranh giới của skill
 
 - Đưa giá trị của trường dữ liệu cá nhân vào báo cáo hoặc vào câu trả lời.
 - Đưa vào báo cáo một con số không tính được từ dữ liệu trong repo.

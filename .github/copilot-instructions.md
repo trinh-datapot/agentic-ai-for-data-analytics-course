@@ -34,7 +34,7 @@ Mở đầu, tối đa ba dòng:
 ```
 skill: <tên skill đang chạy, hoặc "không dùng skill">
 Tôi hiểu là: <yêu cầu, diễn đạt lại một câu>
-Tôi sẽ: <việc sẽ làm>, và dừng ở <cửa duyệt> để bạn xác nhận
+Tôi sẽ: <việc sẽ làm>, và dừng lại chờ duyệt ở <bước nào> để bạn xác nhận
 ```
 
 Kết thúc, ba dòng:

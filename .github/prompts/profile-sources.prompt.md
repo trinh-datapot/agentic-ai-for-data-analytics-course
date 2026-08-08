@@ -11,18 +11,18 @@ kèm bằng chứng, và kết thúc bằng một thẻ nguồn dùng lại đư
 Nguyên tắc xuyên suốt: giá trị thô ở lại trong file dữ liệu, chỉ cấu trúc và chỉ số tổng hợp mới
 được đưa vào tài liệu.
 
-## Khi nào dùng
+## Tình huống sử dụng
 
 Khi cần biết trong một nguồn dữ liệu thực tế có gì: bảng nào, cột nào, kiểu dữ liệu, mức độ thiếu,
 trùng lặp, giá trị bất thường.
 
-## Khi nào không dùng
+## Tình huống không nên dùng
 
 - Cần một con số hoặc một cắt lát số liệu: dùng `/quick-analysis`.
 - Cần làm sạch và biến đổi dữ liệu: dùng `/prepare-data`.
 - Thẻ nguồn đã có và đã trả lời được câu hỏi: đọc lại thẻ, không khảo sát lại.
 
-## Đầu vào bắt buộc
+## Yêu cầu đầu vào
 
 1. `knowledge/sources/` trước tiên. Nếu đã có thẻ cho nguồn này, đọc thẻ và báo lại, chỉ khảo sát
    phần còn thiếu.
@@ -41,7 +41,7 @@ Học viên phải nói rõ khảo sát nguồn nào. Không tự chọn nguồn
    ngày. Chỉ dùng số tổng hợp, không trích giá trị thô của các trường cá nhân.
 3. **Nêu vấn đề kèm bằng chứng.** Mỗi vấn đề chất lượng ghi kèm bằng chứng đếm được: bao nhiêu dòng,
    ở cột nào. Không có bằng chứng thì không ghi thành vấn đề.
-4. **Cửa duyệt.** Trình bày danh sách vấn đề và đề xuất tối đa 10 quy tắc chất lượng dữ liệu, dừng
+4. **Điểm dừng phê duyệt.** Trình bày danh sách vấn đề và đề xuất tối đa 10 quy tắc chất lượng dữ liệu, dừng
    lại chờ học viên chọn quy tắc nào giữ lại. Chỉ giữ những vấn đề ảnh hưởng tới câu hỏi phân tích
    của dự án.
 5. **Ghi thẻ nguồn.** Ghi vào `knowledge/sources/<tên-nguồn>.md` với bốn phần: thông tin nguồn (tên
@@ -50,13 +50,13 @@ Học viên phải nói rõ khảo sát nguồn nào. Không tự chọn nguồn
 6. **Nêu phần không dùng.** Với mỗi bảng không đưa vào bảng "Dùng gì từ nguồn này", ghi một dòng lý
    do. Không im lặng bỏ qua.
 
-## Sản phẩm ra
+## Kết quả đầu ra
 
 - Một thẻ nguồn trong `knowledge/sources/`.
 - Bản khảo sát chi tiết, nếu dài, ghi vào `work/`. Không đưa vào thẻ.
 - Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
 
-## Không được làm
+## Ranh giới của skill
 
 - Trích giá trị thô của trường dữ liệu cá nhân vào thẻ nguồn, vào file khác, hoặc vào câu trả lời.
   Khi học viên yêu cầu, từ chối và đề xuất phương án thay thế: báo chỉ số tổng hợp, hoặc che trường.

@@ -5,9 +5,9 @@ status: draft
 timestamp: <yyyy-mm-dd>
 ---
 
-# Yêu cầu phân tích (data story)
+# Yêu cầu phân tích (bối cảnh báo cáo)
 
-> Bài 1 · buổi 3. Làm rõ một yêu cầu báo cáo còn mơ hồ thành bốn thành phần data story.
+> Bài 1 · buổi 3. Làm rõ một yêu cầu báo cáo còn mơ hồ thành bốn thành phần bối cảnh báo cáo.
 > Dùng đúng thuật ngữ trong Business Glossary buổi 2, không đổi cách gọi. Xóa dòng này khi xong.
 
 | Thành phần | Nội dung |

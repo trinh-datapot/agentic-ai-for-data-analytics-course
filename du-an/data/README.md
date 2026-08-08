@@ -1,16 +1,21 @@
 # Dữ liệu dự án — VanArsdel
 
-Dự án dùng hai nguồn dữ liệu:
+| Thư mục | Nội dung |
+|---|---|
+| `raw/` | Dữ liệu gốc. Không sửa đè lên các file trong này. |
+| `clean/` | Dữ liệu đã làm sạch, sinh ra từ buổi 4. |
+
+Dự án dùng hai nguồn dữ liệu, cả hai đặt trong `raw/`:
 
 | File | Ở đâu | Nội dung |
 |---|---|---|
-| `VanArsdel_Budget.csv` | trong thư mục này | Ngân sách và dự báo doanh thu (dạng bảng ma trận) |
+| `VanArsdel_Budget.csv` | có sẵn trong `raw/` | Ngân sách và dự báo doanh thu (dạng bảng ma trận) |
 | `VanArsdel_Actuals.xlsx` | **ngoài repo** (file lớn ~32 MB) | Dữ liệu bán hàng thực tế: nhiều bảng (Sales và các bảng mô tả) |
 
 ## Lấy file Actuals
 
 File `VanArsdel_Actuals.xlsx` (~32 MB) không để trong repo vì dung lượng lớn. Giảng viên phát riêng file
-này (hoặc link tải); bạn tải về và **đặt vào chính thư mục `data/` này** để đường dẫn trong các bài lab
+này (hoặc link tải); bạn tải về và **đặt vào thư mục `du-an/data/raw/`** để đường dẫn trong các bài lab
 hoạt động đúng.
 
 (Nhóm có dữ liệu riêng thì thay bằng dữ liệu của nhóm.)

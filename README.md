@@ -36,18 +36,15 @@ Repo này chứa dữ liệu, tài liệu ngữ cảnh và bộ skill cho các b
 | `/check` | 7 | Kiểm chứng số liệu, mô hình và công thức |
 | `/review` | 8 | Rà soát toàn bộ dự án trước cửa nghiệm thu |
 
-Mỗi skill có cùng sáu phần: khi nào dùng, khi nào không dùng, đầu vào bắt buộc, các bước thực hiện,
-sản phẩm ra, không được làm. Đọc file skill trước khi chạy để biết agent sẽ dừng ở cửa duyệt nào.
+Mỗi skill có cùng sáu phần: tình huống sử dụng, tình huống không nên dùng, yêu cầu đầu vào,
+các bước thực hiện, kết quả đầu ra, ranh giới của skill. Đọc file skill trước khi chạy để biết agent sẽ dừng lại chờ duyệt ở bước nào.
 
 ## Cấu trúc theo buổi
 
 - `day-1/`: Buổi 1, tạo báo cáo HTML đầu tiên từ dữ liệu bán hàng AdventureWorks (demo).
-- `day-2/`: Buổi 2, dựng nền nghiệp vụ và dữ liệu cho dự án thật (dataset VanArsdel). Khung dự án
-  dựng sẵn: `tai-lieu-nghiep-vu.md`, `org-context/`, `knowledge/`, `data/`.
-- `day-3/`: Buổi 3, lên kế hoạch phân tích. Khung thẻ báo cáo dựng sẵn trong
-  `knowledge/reports/bao-cao-cua-ban/`.
-- `du-an/`: **Thư mục dự án dùng từ buổi 4 đến buổi 8.** Ở buổi 4, sản phẩm buổi 2 và buổi 3 được
-  copy sang đây để năm buổi còn lại làm việc trên cùng một kho tri thức.
+- `du-an/`: **Thư mục dự án, dùng từ buổi 2 đến buổi 8.** Toàn bộ sản phẩm của dự án nằm ở đây:
+  `tai-lieu-nghiep-vu.md`, `org-context/`, `knowledge/`, `data/`, `work/`. Khung dựng sẵn, bạn điền
+  dần qua từng buổi.
 - `day-4/` đến `day-8/`: mỗi thư mục một README ngắn nêu skill mới, sản phẩm của buổi và nơi ghi.
 
 ## Yêu cầu công cụ

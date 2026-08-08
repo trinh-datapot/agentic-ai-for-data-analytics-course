@@ -8,12 +8,12 @@ argument-hint: phạm vi cần rà soát, ví dụ toàn bộ dự án trước 
 Rà soát toàn bộ một phần việc trước khi nó được chấp nhận, với thái độ tìm lỗi chứ không tìm cách
 xác nhận là ổn. Skill này chỉ nêu phát hiện và kết luận, không sửa.
 
-## Khi nào dùng
+## Tình huống sử dụng
 
 Trước một cửa nghiệm thu: chuyển giai đoạn, bàn giao cho người khác, hoặc trước khi báo cáo được
 đưa ra ngoài.
 
-## Khi nào không dùng
+## Tình huống không nên dùng
 
 - Kiểm chứng một con số hoặc một measure cụ thể: dùng `/check`.
 - Sửa lỗi vừa phát hiện: dùng skill tương ứng với tầng bị lỗi.
@@ -25,7 +25,7 @@ Người dựng không phải là người đánh giá bản dựng của chính
 đầu bằng bằng chứng trong file và trong model, không được dựa vào lý do đã đưa ra lúc dựng. Nếu một
 phát hiện chỉ dựa trên "lúc trước đã làm đúng rồi", phát hiện đó không có giá trị.
 
-## Đầu vào bắt buộc
+## Yêu cầu đầu vào
 
 1. Checklist hoặc tiêu chí của cửa nghiệm thu đang hướng tới.
 2. Toàn bộ sản phẩm trong phạm vi rà soát: kho ngữ cảnh, thẻ nguồn, Data Dictionary, thẻ chỉ số, thẻ
@@ -47,13 +47,13 @@ phát hiện chỉ dựa trên "lúc trước đã làm đúng rồi", phát hi�
    đạt, vì quyết định cuối cùng thuộc về học viên chứ không thuộc về agent.
 6. **Không sửa gì.** Kết thúc bằng danh sách phát hiện và đề xuất thứ tự xử lý.
 
-## Sản phẩm ra
+## Kết quả đầu ra
 
 - Báo cáo rà soát ghi vào `knowledge/records/review-<ngày>.md`: phạm vi, danh sách phát hiện kèm bằng
   chứng, kết luận ba mức.
 - Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
 
-## Không được làm
+## Ranh giới của skill
 
 - Sửa bất cứ thứ gì trong lượt rà soát.
 - Giữ lại một phát hiện không dẫn được bằng chứng.

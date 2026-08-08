@@ -8,12 +8,12 @@ argument-hint: đối tượng cần kiểm chứng, ví dụ measure Doanh thu
 Kiểm tra một thứ có đúng không, và kết luận bằng bằng chứng đối chiếu được. Skill này chỉ kết luận,
 không tự sửa.
 
-## Khi nào dùng
+## Tình huống sử dụng
 
 Khi cần biết một con số, một measure, một mối quan hệ trong model, hoặc một file có đúng và có an
 toàn để chia sẻ hay không.
 
-## Khi nào không dùng
+## Tình huống không nên dùng
 
 - Sửa lỗi vừa phát hiện: quay lại skill đã tạo ra nó, ví dụ `/build-model` cho measure sai.
 - Rà soát toàn bộ dự án trước một cửa nghiệm thu: dùng `/review`.
@@ -31,7 +31,7 @@ toàn để chia sẻ hay không.
 Ba mức độ sâu: kiểm nhanh (đạt hoặc lệch), kiểm chuẩn (đối chiếu có bằng chứng, mặc định), truy
 nguyên (tìm nguyên nhân gốc của một con số sai).
 
-## Đầu vào bắt buộc
+## Yêu cầu đầu vào
 
 1. Đối tượng cần kiểm chứng, do học viên nêu rõ. Không tự chọn thay.
 2. Thẻ chỉ số trong `knowledge/metrics/`: định nghĩa và cách kiểm chứng đã ghi.
@@ -54,13 +54,13 @@ nguyên (tìm nguyên nhân gốc của một con số sai).
 6. **Bàn giao, không tự sửa.** Kết thúc bằng đề xuất bước sửa và skill tương ứng, để học viên quyết
    định. Việc sửa thuộc về lượt làm việc sau.
 
-## Sản phẩm ra
+## Kết quả đầu ra
 
 - Bảng kết quả kiểm chứng, ghi vào `knowledge/models/<tên-mô-hình>/test-log.md` khi học viên yêu cầu
   lưu lại.
 - Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
 
-## Không được làm
+## Ranh giới của skill
 
 - Sửa bất cứ thứ gì trong lượt kiểm chứng.
 - Kết luận đạt mà không nêu được mốc đối chiếu độc lập.

@@ -8,17 +8,17 @@ argument-hint: KPI chính hoặc lĩnh vực cần phân rã
 Quyết định sẽ đo cái gì trước khi dựng mô hình: phân rã chỉ số chính thành KPI tree, chọn bộ chỉ số
 ưu tiên, và mô tả từng chỉ số đủ để người khác tính lại ra cùng một con số.
 
-## Khi nào dùng
+## Tình huống sử dụng
 
 Khi đã có business question và cần biết đo bằng chỉ số nào, chỉ số đó cấu thành từ đâu.
 
-## Khi nào không dùng
+## Tình huống không nên dùng
 
 - Viết công thức DAX trong Power BI: dùng `/build-model`.
 - Làm rõ yêu cầu báo cáo: dùng `/gather-requirements`.
 - Kiểm tra một con số đang nghi sai: dùng `/check`.
 
-## Đầu vào bắt buộc
+## Yêu cầu đầu vào
 
 1. `knowledge/reports/*/business-questions.md`: trục để quyết định giữ hay bỏ một nhánh.
 2. `knowledge/models/*/dictionary.md`: để biết công thức có trường dữ liệu thật hay không.
@@ -37,19 +37,19 @@ Khi đã có business question và cần biết đo bằng chỉ số nào, ch�
 5. **Xếp ưu tiên theo ba tiêu chí.** Với từng chỉ số: có bám business question không, có đo được
    không, dữ liệu hiện tại có đủ trường để tính không. Đề xuất bộ chỉ số ưu tiên và danh sách loại,
    mỗi chỉ số bị loại kèm một câu lý do.
-6. **Cửa duyệt.** Dừng lại chờ học viên chốt bộ chỉ số ưu tiên, rồi mới ghi file.
+6. **Điểm dừng phê duyệt.** Dừng lại chờ học viên chốt bộ chỉ số ưu tiên, rồi mới ghi file.
 7. **Viết thẻ chỉ số.** Mỗi chỉ số ưu tiên một thẻ gồm năm phần: tên, định nghĩa một câu, công thức
    tính, đơn vị đo, và cách kiểm chứng (con số nào đối chiếu được với dữ liệu thực tế).
 8. **Kiểm chéo Data Dictionary.** Đối chiếu mọi trường xuất hiện trong công thức với Data Dictionary.
    Trường nào chưa có thì nêu thành câu hỏi mở, không tự suy ra ý nghĩa.
 
-## Sản phẩm ra
+## Kết quả đầu ra
 
 - `knowledge/metrics/kpi-tree.md`: cây chỉ số, kèm danh sách nhánh đã cắt và lý do.
 - `knowledge/metrics/<tên-chỉ-số>.md`: mỗi chỉ số ưu tiên một thẻ.
 - Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
 
-## Không được làm
+## Ranh giới của skill
 
 - Tự đặt định nghĩa nghiệp vụ cho một chỉ số. Định nghĩa là việc của người sở hữu chỉ số, chỗ nào
   chưa rõ thì ghi thành câu hỏi mở.
