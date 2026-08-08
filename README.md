@@ -1,6 +1,6 @@
 # Agentic AI for Data Analytics — Repo thực hành khóa học
 
-Repo này chứa dữ liệu và tài liệu ngữ cảnh cho các buổi thực hành khóa
+Repo này chứa dữ liệu, tài liệu ngữ cảnh và bộ skill cho các buổi thực hành khóa
 **Agentic AI for Data Analytics** của Datapot Analytics.
 
 ## Cách dùng
@@ -9,20 +9,54 @@ Repo này chứa dữ liệu và tài liệu ngữ cảnh cho các buổi thực
    ```
    git clone https://github.com/trinh-datapot/agentic-ai-for-data-analytics-course
    ```
-2. Mở thư mục repo bằng **VSCode** đã đăng nhập **GitHub Copilot**.
-3. Mỗi buổi có một thư mục riêng (`day-1`, `day-2`, ...). Mở thư mục của buổi tương ứng
-   để làm phần thực hành.
+2. Mở **thư mục gốc** của repo bằng **VSCode** đã đăng nhập **GitHub Copilot**. Không mở riêng thư
+   mục một buổi, vì bộ quy tắc và các skill nằm ở gốc repo, agent chỉ đọc được khi thư mục gốc là
+   nơi làm việc.
+3. Mở cửa sổ Copilot Chat và chọn chế độ **Agent**. Chế độ Ask chỉ trả lời bằng văn bản, không tạo
+   được file.
+4. **Đầu mỗi buổi chạy `git pull`** để nhận skill mới của buổi đó.
 
-## Cấu trúc
+## Bộ khung làm việc
+
+| Đường dẫn | Nội dung |
+|---|---|
+| `.github/copilot-instructions.md` | Bộ quy tắc agent luôn đọc trước khi làm việc: sáu nguyên tắc nền, khuôn mở đầu và kết thúc mỗi lượt, bản đồ thư mục |
+| `.github/prompts/` | Các skill của khóa. Gõ `/<tên skill>` trong Copilot Chat để chạy |
+
+## Skill theo buổi
+
+| Skill | Buổi | Công việc |
+|---|---|---|
+| `/quick-analysis` | 1 | Phân tích nhanh và kết xuất báo cáo HTML |
+| `/profile-sources` | 2 | Khảo sát nguồn dữ liệu và viết thẻ nguồn |
+| `/gather-requirements` | 3 | Biến một yêu cầu chưa rõ ràng thành Report Proposal |
+| `/prepare-data` | 4 | Làm sạch dữ liệu và ghi lại các bước xử lý |
+| `/business-model` | 5 | Dựng KPI tree và mô tả bộ chỉ số |
+| `/build-model` | 6 | Dựng mô hình dữ liệu star schema qua MCP |
+| `/check` | 7 | Kiểm chứng số liệu, mô hình và công thức |
+| `/review` | 8 | Rà soát toàn bộ dự án trước cửa nghiệm thu |
+
+Mỗi skill có cùng sáu phần: khi nào dùng, khi nào không dùng, đầu vào bắt buộc, các bước thực hiện,
+sản phẩm ra, không được làm. Đọc file skill trước khi chạy để biết agent sẽ dừng ở cửa duyệt nào.
+
+## Cấu trúc theo buổi
 
 - `day-1/`: Buổi 1, tạo báo cáo HTML đầu tiên từ dữ liệu bán hàng AdventureWorks (demo).
-- `day-2/`: Buổi 2, dựng nền nghiệp vụ và dữ liệu cho dự án thật (dataset VanArsdel). Khung dự án dựng sẵn:
-  `tai-lieu-nghiep-vu.md`, `org-context/` (business requirement, glossary, sources), `knowledge/` (profiling, data dictionary), `data/`.
+- `day-2/`: Buổi 2, dựng nền nghiệp vụ và dữ liệu cho dự án thật (dataset VanArsdel). Khung dự án
+  dựng sẵn: `tai-lieu-nghiep-vu.md`, `org-context/`, `knowledge/`, `data/`.
 - `day-3/`: Buổi 3, lên kế hoạch phân tích. Khung thẻ báo cáo dựng sẵn trong
-  `knowledge/reports/bao-cao-cua-ban/`: yêu cầu phân tích, business question, Report Proposal, mockup, ý kiến duyệt.
-- (các buổi sau sẽ được bổ sung dần)
+  `knowledge/reports/bao-cao-cua-ban/`.
+- `du-an/`: **Thư mục dự án dùng từ buổi 4 đến buổi 8.** Ở buổi 4, sản phẩm buổi 2 và buổi 3 được
+  copy sang đây để năm buổi còn lại làm việc trên cùng một kho tri thức.
+- `day-4/` đến `day-8/`: mỗi thư mục một README ngắn nêu skill mới, sản phẩm của buổi và nơi ghi.
 
 ## Yêu cầu công cụ
 
 - VSCode và GitHub Copilot (đã đăng nhập).
-- Power BI Desktop (dùng ở các buổi sau).
+- Power BI Desktop, dùng từ buổi 4.
+- Cầu nối MCP tới Power BI, dùng từ buổi 6.
+
+## Lưu ý về dữ liệu
+
+Dữ liệu gốc của dự án không được commit lên repo. Các trường dữ liệu cá nhân phải được che hoặc loại
+trước khi đưa dữ liệu cho agent.
