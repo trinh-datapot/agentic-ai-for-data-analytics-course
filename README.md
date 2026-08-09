@@ -37,6 +37,7 @@ Repo này chứa dữ liệu, tài liệu ngữ cảnh và bộ skill cho các b
 | `/review` | 8 | Rà soát toàn bộ dự án trước cửa nghiệm thu |
 | `/design-report` | 9 | Chốt report spec trước khi dựng báo cáo |
 | `/build-report` | 9 | Dựng trang báo cáo theo spec đã duyệt |
+| `/fix` | 13 | Cập nhật sản phẩm khi yêu cầu, người dùng hoặc nguồn dữ liệu thay đổi |
 
 Mỗi skill có cùng sáu phần: tình huống sử dụng, tình huống không nên dùng, yêu cầu đầu vào,
 các bước thực hiện, kết quả đầu ra, ranh giới của skill. Đọc file skill trước khi chạy để biết agent sẽ dừng lại chờ duyệt ở bước nào.
