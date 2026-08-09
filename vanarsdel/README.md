@@ -37,7 +37,7 @@ học viên thực hiện ở cuối khóa. Thông tin đăng ký được gửi
 
 File `.pbix` của dự án đặt ngay tại `vanarsdel/`.
 
-## Bạn điền gì ở buổi 2 và buổi 3
+## Bạn điền gì ở từng buổi
 
 | Phần thực hành | Sản phẩm | Điền vào |
 |---|---|---|
@@ -46,6 +46,22 @@ File `.pbix` của dự án đặt ngay tại `vanarsdel/`.
 | Buổi 2 · Bài 3 | Kết quả profiling, vấn đề chất lượng kèm bằng chứng | `knowledge/sources/vanarsdel.md` |
 | Buổi 2 · Bài 4 | Data Dictionary, mô tả các bảng và trường dữ liệu | `knowledge/models/vanarsdel-sales/dictionary.md` |
 | Buổi 3 · Bài 1 đến 4 | Yêu cầu phân tích, business question, Report Proposal, mockup | `knowledge/reports/bao-cao-cua-ban/` |
+| Buổi 4 · Bài 1 | Data Dictionary hoàn chỉnh, mỗi trường có trạng thái PII | `knowledge/models/vanarsdel-sales/dictionary.md` |
+| Buổi 4 · Bài 2 | Dữ liệu đã làm sạch, và bản ghi các bước xử lý | `data/clean/` · `knowledge/models/vanarsdel-sales/prep-log.md` |
+| Buổi 4 · Bài 3 | File Power BI của dự án, đã nạp dữ liệu sạch | `vanarsdel/` |
+| Buổi 5 · Bài 1 đến 2 | KPI tree, kèm danh sách nhánh đã cắt và lý do loại | `knowledge/metrics/kpi-tree.md` |
+| Buổi 5 · Bài 3 | Thẻ chỉ số cho từng KPI ưu tiên | `knowledge/metrics/<tên-chỉ-số>.md` |
+| Buổi 6 · Bài 2 đến 3 | Model star schema, quan hệ đúng chiều lọc, đã đánh dấu Date table | file `.pbix` trong `vanarsdel/` |
+| Buổi 6 · Bài 4 | Thẻ mô hình: danh sách bảng, bảng quan hệ, kết quả kiểm thử | `knowledge/models/vanarsdel-sales/model-card.md` |
+| Buổi 7 · Bài 1 đến 3 | Bộ measure cho các business question, gồm so kỳ và lũy kế | file `.pbix` trong `vanarsdel/` |
+| Buổi 7 · Bài 4 | Bảng kết quả kiểm chứng đạt hoặc lệch, kèm nguồn đối chiếu | `knowledge/models/vanarsdel-sales/test-log.md` |
+| Buổi 8 · Bài 1 | Báo cáo rà soát và danh sách lỗ hổng theo checklist | `knowledge/records/review-checkpoint-1.md` |
+| Buổi 8 · Bài 2 | Kế hoạch hoàn thiện: ưu tiên, cách sửa, tiêu chí xác nhận đạt | `knowledge/records/` |
+
+Ở buổi 3 bạn đổi tên `knowledge/reports/bao-cao-cua-ban/` thành tên báo cáo cả lớp cùng chạy, theo
+hướng dẫn trong tài liệu lab.
+
+Từ buổi 2 trở đi **không có thư mục riêng theo buổi**. Mọi việc làm trong `vanarsdel/`.
 
 ## Lưu ý về dữ liệu
 
