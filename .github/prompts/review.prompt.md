@@ -21,7 +21,7 @@ Trước một cửa nghiệm thu: chuyển giai đoạn, bàn giao cho người
 
 ## Một luật bắt buộc
 
-Người dựng không phải là người đánh giá bản dựng của chính mình. Khi rà soát, agent phải rà lại từ
+Người dựng không phải là người đánh giá bản dựng của chính mình. Khi rà soát, agent phải rà soát lại từ
 đầu bằng bằng chứng trong file và trong model, không được dựa vào lý do đã đưa ra lúc dựng. Nếu một
 phát hiện chỉ dựa trên "lúc trước đã làm đúng rồi", phát hiện đó không có giá trị.
 
@@ -33,19 +33,20 @@ phát hiện chỉ dựa trên "lúc trước đã làm đúng rồi", phát hi�
 
 ## Các bước thực hiện
 
-1. **Chốt phạm vi và các mặt sẽ rà.** Trình bày: rà những gì, theo checklist nào, và bốn mặt sẽ đi
-   qua. Dừng lại chờ học viên xác nhận phạm vi trước khi đọc dữ liệu và model.
-2. **Rà từng mặt, mỗi mặt một lượt sạch.** Bốn mặt: dữ liệu và tài liệu nguồn, mô hình và mối quan
+1. **Chốt phạm vi và các mặt sẽ rà.** Trình bày: rà soát những gì, theo checklist nào, và bốn mặt sẽ
+   đi qua.
+2. **Điểm dừng phê duyệt.** Dừng lại chờ học viên xác nhận phạm vi trước khi đọc dữ liệu và model.
+3. **Rà từng mặt, mỗi mặt một lượt sạch.** Bốn mặt: dữ liệu và tài liệu nguồn, mô hình và mối quan
    hệ, công thức và số liệu, tính đầy đủ của tài liệu. Mỗi lượt bắt đầu lại từ bằng chứng, không dùng
    kết luận của lượt trước.
-3. **Lọc theo bằng chứng.** Một phát hiện chỉ được giữ lại khi dẫn được bằng chứng cụ thể: tên file
+4. **Lọc theo bằng chứng.** Một phát hiện chỉ được giữ lại khi dẫn được bằng chứng cụ thể: tên file
    và dòng, tên bảng hoặc measure, hoặc một con số so với một mốc đối chiếu độc lập. Phát hiện không
    dẫn được bằng chứng thì bỏ, không ghi vào danh sách.
-4. **Xếp theo mức nghiêm trọng.** Giữ tối đa 15 phát hiện, nặng nhất lên đầu. Mỗi phát hiện ghi:
+5. **Xếp theo mức nghiêm trọng.** Giữ tối đa 15 phát hiện, nặng nhất lên đầu. Mỗi phát hiện ghi:
    vấn đề, bằng chứng, hậu quả nếu bỏ qua, và skill nên dùng để sửa.
-5. **Kết luận bằng một trong ba mức.** Đi tiếp, thận trọng, hoặc dừng lại. Không dùng đạt hoặc không
+6. **Kết luận bằng một trong ba mức.** Đi tiếp, thận trọng, hoặc dừng lại. Không dùng đạt hoặc không
    đạt, vì quyết định cuối cùng thuộc về học viên chứ không thuộc về agent.
-6. **Không sửa gì.** Kết thúc bằng danh sách phát hiện và đề xuất thứ tự xử lý.
+7. **Không sửa gì.** Kết thúc bằng danh sách phát hiện và đề xuất thứ tự xử lý.
 
 ## Kết quả đầu ra
 

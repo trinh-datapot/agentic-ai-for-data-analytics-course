@@ -10,7 +10,7 @@ một trang HTML mở được trên trình duyệt.
 
 ## Tình huống sử dụng
 
-Khi học viên cần một cắt lát số liệu ("doanh thu theo vùng năm nay") hoặc một trang báo cáo tổng
+Khi học viên cần một lát cắt số liệu ("doanh thu theo vùng năm nay") hoặc một trang báo cáo tổng
 hợp các câu hỏi đã có trong thẻ báo cáo.
 
 ## Tình huống không nên dùng

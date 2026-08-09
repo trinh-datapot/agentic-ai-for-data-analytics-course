@@ -18,7 +18,7 @@ trùng lặp, giá trị bất thường.
 
 ## Tình huống không nên dùng
 
-- Cần một con số hoặc một cắt lát số liệu: dùng `/quick-analysis`.
+- Cần một con số hoặc một lát cắt số liệu: dùng `/quick-analysis`.
 - Cần làm sạch và biến đổi dữ liệu: dùng `/prepare-data`.
 - Thẻ nguồn đã có và đã trả lời được câu hỏi: đọc lại thẻ, không khảo sát lại.
 
