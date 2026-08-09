@@ -41,18 +41,22 @@ Học viên phải nói rõ khảo sát nguồn nào. Không tự chọn nguồn
    ngày. Chỉ dùng số tổng hợp, không trích giá trị thô của các trường cá nhân.
 3. **Nêu vấn đề kèm bằng chứng.** Mỗi vấn đề chất lượng ghi kèm bằng chứng đếm được: bao nhiêu dòng,
    ở cột nào. Không có bằng chứng thì không ghi thành vấn đề.
-4. **Điểm dừng phê duyệt.** Trình bày danh sách vấn đề và đề xuất tối đa 10 quy tắc chất lượng dữ liệu, dừng
+4. **Chốt mốc số liệu.** Với mỗi bảng sẽ dùng, ghi lại số dòng, một cột số chính kèm tổng của cột
+   đó, và khoảng thời gian nếu bảng có cột ngày. Chốt các số này **trước khi dữ liệu bị làm sạch hay
+   biến đổi**, vì đây là bộ số duy nhất để đối chiếu về sau. Chỉ ghi số tổng hợp, không ghi giá trị
+   của từng dòng.
+5. **Điểm dừng phê duyệt.** Trình bày danh sách vấn đề và đề xuất tối đa 10 quy tắc chất lượng dữ liệu, dừng
    lại chờ học viên chọn quy tắc nào giữ lại. Chỉ giữ những vấn đề ảnh hưởng tới câu hỏi phân tích
    của dự án.
-5. **Ghi thẻ nguồn.** Ghi vào `knowledge/sources/<tên-nguồn>.md` với bốn phần: thông tin nguồn (tên
+6. **Ghi thẻ nguồn.** Ghi vào `knowledge/sources/<tên-nguồn>.md` với bốn phần: thông tin nguồn (tên
    file, cách lấy, thời điểm khảo sát), bảng cấu trúc từng bảng và cột, danh sách quy tắc chất lượng
    dữ liệu đã chốt, và bảng "Dùng gì từ nguồn này" liệt kê các bảng sẽ dùng cho bài toán.
-6. **Nêu phần không dùng.** Với mỗi bảng không đưa vào bảng "Dùng gì từ nguồn này", ghi một dòng lý
+7. **Nêu phần không dùng.** Với mỗi bảng không đưa vào bảng "Dùng gì từ nguồn này", ghi một dòng lý
    do. Không im lặng bỏ qua.
 
 ## Kết quả đầu ra
 
-- Một thẻ nguồn trong `knowledge/sources/`.
+- Một thẻ nguồn trong `knowledge/sources/`, có mục mốc số liệu điền đầy đủ.
 - Bản khảo sát chi tiết, nếu dài, ghi vào `work/`. Không đưa vào thẻ.
 - Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
 
@@ -61,4 +65,5 @@ Học viên phải nói rõ khảo sát nguồn nào. Không tự chọn nguồn
 - Trích giá trị thô của trường dữ liệu cá nhân vào thẻ nguồn, vào file khác, hoặc vào câu trả lời.
   Khi học viên yêu cầu, từ chối và đề xuất phương án thay thế: báo chỉ số tổng hợp, hoặc che trường.
 - Kết luận về chất lượng dữ liệu khi chưa đếm được bằng chứng.
+- Chốt mốc số liệu sau khi dữ liệu đã bị làm sạch. Mốc chốt muộn không còn là mốc độc lập.
 - Ghi đè một thẻ nguồn đã có khi chưa được học viên duyệt.

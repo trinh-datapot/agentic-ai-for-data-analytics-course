@@ -31,6 +31,19 @@ sách và dự báo). Đường dẫn file xem `data/README.md`.
 | Date | | |
 | Budget (CSV) | | |
 
+## Mốc số liệu
+
+> Chốt ngay lúc khảo sát, **trước khi làm sạch**. Đây là bộ số để đối chiếu ở các buổi sau: buổi 4
+> kiểm dữ liệu sau khi làm sạch có mất mát không, buổi 7 kiểm measure tính ra có đúng không.
+> Chỉ ghi số tổng hợp, không ghi giá trị của từng dòng.
+
+| Bảng | Số dòng | Cột số chính | Tổng của cột đó | Ngày chốt |
+|---|---|---|---|---|
+| Sales | | | | |
+| | | | | |
+
+Khoảng thời gian dữ liệu: (điền: từ ngày nào đến ngày nào)
+
 ## Trường dữ liệu cá nhân (PII)
 
 > Liệt kê các trường là dữ liệu cá nhân, đã che/loại trước khi đưa cho AI.
