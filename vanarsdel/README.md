@@ -35,7 +35,9 @@ học viên thực hiện ở cuối khóa. Thông tin đăng ký được gửi
 | `data/clean/` | Dữ liệu đã làm sạch | 4 |
 | `work/` | Bản nháp và kết quả trung gian. Không dùng làm nguồn chốt | mọi buổi |
 
-File `.pbix` của dự án đặt ngay tại `vanarsdel/`.
+Dự án Power BI đặt ngay tại `vanarsdel/`, lưu ở định dạng **Power BI project (`.pbip`)**: một file
+`.pbip` kèm hai thư mục `<Tên>.Report/` và `<Tên>.SemanticModel/`. Đây là các file text nên commit
+được và xem được lịch sử thay đổi của model. Không dùng `.pbix` vì đó là file nhị phân.
 
 ## Bạn điền gì ở từng buổi
 
@@ -48,12 +50,12 @@ File `.pbix` của dự án đặt ngay tại `vanarsdel/`.
 | Buổi 3 · Bài 1 đến 4 | Yêu cầu phân tích, business question, Report Proposal, mockup | `knowledge/reports/bao-cao-cua-ban/` |
 | Buổi 4 · Bài 1 | Data Dictionary hoàn chỉnh, mỗi trường có trạng thái PII | `knowledge/models/vanarsdel-sales/dictionary.md` |
 | Buổi 4 · Bài 2 | Dữ liệu đã làm sạch, và bản ghi các bước xử lý | `data/clean/` · `knowledge/models/vanarsdel-sales/prep-log.md` |
-| Buổi 4 · Bài 3 | File Power BI của dự án, đã nạp dữ liệu sạch | `vanarsdel/` |
+| Buổi 4 · Bài 3 | Dự án Power BI (`.pbip`) đã nạp dữ liệu sạch | `vanarsdel/<Tên>.pbip` |
 | Buổi 5 · Bài 1 đến 2 | KPI tree, kèm danh sách nhánh đã cắt và lý do loại | `knowledge/metrics/kpi-tree.md` |
 | Buổi 5 · Bài 3 | Thẻ chỉ số cho từng KPI ưu tiên | `knowledge/metrics/<tên-chỉ-số>.md` |
-| Buổi 6 · Bài 2 đến 3 | Model star schema, quan hệ đúng chiều lọc, đã đánh dấu Date table | file `.pbix` trong `vanarsdel/` |
+| Buổi 6 · Bài 2 đến 3 | Model star schema, quan hệ đúng chiều lọc, đã đánh dấu Date table | `vanarsdel/<Tên>.SemanticModel/` |
 | Buổi 6 · Bài 4 | Thẻ mô hình: danh sách bảng, bảng quan hệ, kết quả kiểm thử | `knowledge/models/vanarsdel-sales/model-card.md` |
-| Buổi 7 · Bài 1 đến 3 | Bộ measure cho các business question, gồm so kỳ và lũy kế | file `.pbix` trong `vanarsdel/` |
+| Buổi 7 · Bài 1 đến 3 | Bộ measure cho các business question, gồm so kỳ và lũy kế | `vanarsdel/<Tên>.SemanticModel/` |
 | Buổi 7 · Bài 4 | Bảng kết quả kiểm chứng đạt hoặc lệch, kèm nguồn đối chiếu | `knowledge/models/vanarsdel-sales/test-log.md` |
 | Buổi 8 · Bài 1 | Báo cáo rà soát và danh sách lỗ hổng theo checklist | `knowledge/records/review-checkpoint-1.md` |
 | Buổi 8 · Bài 2 | Kế hoạch hoàn thiện: ưu tiên, cách sửa, tiêu chí xác nhận đạt | `knowledge/records/` |
@@ -65,8 +67,8 @@ Từ buổi 2 trở đi **không có thư mục riêng theo buổi**. Mọi vi�
 
 ## Lưu ý về dữ liệu
 
-Dữ liệu gốc trong `data/raw/` không được commit lên GitHub. Mỗi học viên tự đặt dataset vào máy của
-mình theo hướng dẫn của trợ giảng.
+Dữ liệu gốc trong `data/raw/` không được commit lên GitHub, trừ `VanArsdel_Budget.csv` đã có sẵn
+trong repo vì file nhỏ. Các file còn lại mỗi học viên tự đặt vào máy mình theo hướng dẫn của trợ giảng.
 
 Các trường dữ liệu cá nhân phải được che hoặc loại trước khi đưa dữ liệu cho agent. Quy tắc này nằm
 trong `.github/copilot-instructions.md` và được nhắc lại trong từng skill có chạm dữ liệu.

@@ -9,16 +9,22 @@ Thumbs.db
 .vscode/
 
 # Dữ liệu của dự án: không commit, mỗi học viên tự đặt vào máy mình
-du-an/data/raw/*
-!du-an/data/raw/.gitkeep
-du-an/data/clean/*
-!du-an/data/clean/.gitkeep
+vanarsdel/data/raw/*
+!vanarsdel/data/raw/.gitkeep
+!vanarsdel/data/raw/VanArsdel_Budget.csv
+vanarsdel/data/clean/*
+!vanarsdel/data/clean/.gitkeep
 
-# File Power BI
+# Power BI
+# Dự án lưu dạng PBIP (thư mục file text), commit được và xem được lịch sử thay đổi.
+# File .pbix là nhị phân, không commit.
 *.pbix
+# Thiết lập cục bộ và cache của PBIP, khác nhau theo máy nên không commit.
+**/.pbi/localSettings.json
+**/*.abf
 
 # Thư mục làm việc: bản nháp và kết quả trung gian
-du-an/work/*
-!du-an/work/.gitkeep
+vanarsdel/work/*
+!vanarsdel/work/.gitkeep
 day-1/work/*
 !day-1/work/README.md

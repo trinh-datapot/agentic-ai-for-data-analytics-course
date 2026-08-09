@@ -35,5 +35,8 @@ model: vanarsdel-sales
 
 ---
 
-> Ghi chú: bảng khách hàng có trường PII (email, họ tên) — **không đưa vào Data Dictionary dùng chung /
-> báo cáo** nếu không cần thiết.
+> Ghi chú: bảng khách hàng có trường dữ liệu cá nhân (PII) như email, họ tên, mã bưu chính.
+> **Vẫn liệt kê các trường này trong Data Dictionary và đánh dấu chúng**, không bỏ ra ngoài. Buổi 4 sẽ
+> thêm một cột PII (có/không) cho mọi trường; skill `/prepare-data` đọc chính cột đó để biết trường nào
+> phải che trước khi xử lý. Trường không được liệt kê là trường skill không biết đường che.
+> Riêng **giá trị** của các trường này thì không đưa vào tài liệu hay báo cáo.

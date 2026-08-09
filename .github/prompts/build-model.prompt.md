@@ -23,7 +23,7 @@ thời gian.
 
 1. `knowledge/metrics/`: thẻ chỉ số của bộ KPI ưu tiên, gồm công thức và cách kiểm chứng.
 2. `knowledge/models/*/dictionary.md`: tên bảng và tên cột thật trong dữ liệu.
-3. Kết nối MCP tới đúng file `.pbix` của dự án đang mở.
+3. Kết nối MCP tới đúng dự án Power BI (`.pbip`) đang mở.
 
 ## Các bước thực hiện
 
@@ -46,7 +46,7 @@ thời gian.
 
 ## Kết quả đầu ra
 
-- Model trong Power BI đã cập nhật, đã lưu file `.pbix`.
+- Model trong Power BI đã cập nhật và đã lưu, thay đổi nằm trong `<Tên>.SemanticModel/definition/`.
 - Thẻ mô hình trong `knowledge/models/<tên-mô-hình>/model-card.md`.
 - Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
 
