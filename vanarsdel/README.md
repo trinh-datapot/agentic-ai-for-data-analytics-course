@@ -1,10 +1,12 @@
-# du-an — Thư mục dự án của bạn, dùng từ buổi 2 đến buổi 8
+# vanarsdel — Dự án thực hành trên lớp, dùng từ buổi 2 đến buổi 8
 
-> Đây là khung dự án dựng sẵn cho khóa AI for Data Analytics. Từ buổi 2 trở đi, mọi sản phẩm của dự án
-> đều nằm trong thư mục này. Bản mẫu đi kèm dữ liệu **VanArsdel**; nhóm có dữ liệu riêng thì thay dữ
-> liệu và điền lại theo cùng cấu trúc.
+> Đây là dự án cả lớp cùng làm trong suốt khóa AI for Data Analytics, trên dữ liệu của công ty
+> **VanArsdel**. Từ buổi 2 trở đi, mọi sản phẩm bạn dựng ra đều nằm trong thư mục này.
 
-Buổi 1 là buổi làm quen, chạy riêng trong `day-1/` trên dữ liệu demo, không thuộc dự án.
+Buổi 1 là buổi làm quen, chạy riêng trong `day-1/` trên dữ liệu demo AdventureWorks, không thuộc dự án này.
+
+**Đây không phải Final Project.** Final Project là một dự án riêng, có checkpoint review với giảng viên,
+học viên thực hiện ở cuối khóa. Thông tin đăng ký được gửi riêng sau buổi 2.
 
 ## Kho ngữ cảnh chia hai lớp
 
@@ -33,7 +35,7 @@ Buổi 1 là buổi làm quen, chạy riêng trong `day-1/` trên dữ liệu de
 | `data/clean/` | Dữ liệu đã làm sạch | 4 |
 | `work/` | Bản nháp và kết quả trung gian. Không dùng làm nguồn chốt | mọi buổi |
 
-File `.pbix` của dự án đặt ngay tại `du-an/`.
+File `.pbix` của dự án đặt ngay tại `vanarsdel/`.
 
 ## Bạn điền gì ở buổi 2 và buổi 3
 

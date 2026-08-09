@@ -1,6 +1,6 @@
 # Buổi 6 — Dựng semantic model (star schema) qua MCP
 
-Làm việc trên file `.pbix` trong thư mục [`du-an/`](../du-an/).
+Làm việc trên file `.pbix` trong thư mục [`vanarsdel/`](../vanarsdel/).
 
 ## Skill mới của buổi
 
@@ -10,8 +10,8 @@ Làm việc trên file `.pbix` trong thư mục [`du-an/`](../du-an/).
 
 | Sản phẩm | Ghi vào |
 |---|---|
-| Model star schema có quan hệ đúng chiều lọc, đã đánh dấu Date table | `du-an/<tên-file>.pbix` |
-| Thẻ mô hình: danh sách bảng, bảng quan hệ, kết quả kiểm thử | `du-an/knowledge/models/vanarsdel-sales/model-card.md` |
+| Model star schema có quan hệ đúng chiều lọc, đã đánh dấu Date table | `vanarsdel/<tên-file>.pbix` |
+| Thẻ mô hình: danh sách bảng, bảng quan hệ, kết quả kiểm thử | `vanarsdel/knowledge/models/vanarsdel-sales/model-card.md` |
 
 ## Trước khi bắt đầu
 

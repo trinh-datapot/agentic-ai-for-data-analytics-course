@@ -15,10 +15,9 @@ Dự án dùng hai nguồn dữ liệu, cả hai đặt trong `raw/`:
 ## Lấy file Actuals
 
 File `VanArsdel_Actuals.xlsx` (~32 MB) không để trong repo vì dung lượng lớn. Giảng viên phát riêng file
-này (hoặc link tải); bạn tải về và **đặt vào thư mục `du-an/data/raw/`** để đường dẫn trong các bài lab
+này (hoặc link tải); bạn tải về và **đặt vào thư mục `vanarsdel/data/raw/`** để đường dẫn trong các bài lab
 hoạt động đúng.
 
-(Nhóm có dữ liệu riêng thì thay bằng dữ liệu của nhóm.)
 
 ## Lưu ý an toàn dữ liệu cá nhân (PII)
 

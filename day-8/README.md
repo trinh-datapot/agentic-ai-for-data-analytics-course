@@ -1,6 +1,6 @@
 # Buổi 8 — Checkpoint 1: rà soát và sửa lỗ hổng
 
-Cửa kiểm soát cuối giai đoạn dữ liệu và mô hình. Rà soát toàn bộ [`du-an/`](../du-an/).
+Cửa kiểm soát cuối giai đoạn dữ liệu và mô hình. Rà soát toàn bộ [`vanarsdel/`](../vanarsdel/).
 
 ## Skill mới của buổi
 
@@ -10,9 +10,9 @@ Cửa kiểm soát cuối giai đoạn dữ liệu và mô hình. Rà soát toà
 
 | Sản phẩm | Ghi vào |
 |---|---|
-| Danh sách lỗ hổng theo checklist, mỗi mục ghi rõ vướng tiêu chí nào | `du-an/knowledge/records/` |
-| Kế hoạch hoàn thiện: thứ tự ưu tiên, cách sửa, tiêu chí xác nhận đạt | `du-an/knowledge/records/` |
-| Báo cáo rà soát của skill | `du-an/knowledge/records/review-checkpoint-1.md` |
+| Danh sách lỗ hổng theo checklist, mỗi mục ghi rõ vướng tiêu chí nào | `vanarsdel/knowledge/records/` |
+| Kế hoạch hoàn thiện: thứ tự ưu tiên, cách sửa, tiêu chí xác nhận đạt | `vanarsdel/knowledge/records/` |
+| Báo cáo rà soát của skill | `vanarsdel/knowledge/records/review-checkpoint-1.md` |
 
 ## Điều kiện đóng một lỗ hổng
 

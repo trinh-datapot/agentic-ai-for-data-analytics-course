@@ -1,6 +1,6 @@
 # Buổi 7 — DAX: viết measure và time intelligence
 
-Làm việc trên model đã kiểm thử ở buổi 6, trong thư mục [`du-an/`](../du-an/).
+Làm việc trên model đã kiểm thử ở buổi 6, trong thư mục [`vanarsdel/`](../vanarsdel/).
 
 ## Skill mới của buổi
 
@@ -12,8 +12,8 @@ Skill `/build-model` của buổi 6 tiếp tục được dùng để viết mea
 
 | Sản phẩm | Ghi vào |
 |---|---|
-| Bộ measure cho các business question, gồm measure so kỳ và lũy kế | Model trong `du-an/<tên-file>.pbix` |
-| Bảng kết quả kiểm chứng đạt hoặc lệch, kèm nguồn đối chiếu | `du-an/knowledge/models/vanarsdel-sales/test-log.md` |
+| Bộ measure cho các business question, gồm measure so kỳ và lũy kế | Model trong `vanarsdel/<tên-file>.pbix` |
+| Bảng kết quả kiểm chứng đạt hoặc lệch, kèm nguồn đối chiếu | `vanarsdel/knowledge/models/vanarsdel-sales/test-log.md` |
 
 ## Nguyên tắc quan trọng của buổi
 

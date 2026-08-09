@@ -42,7 +42,7 @@ các bước thực hiện, kết quả đầu ra, ranh giới của skill. Đ�
 ## Cấu trúc theo buổi
 
 - `day-1/`: Buổi 1, tạo báo cáo HTML đầu tiên từ dữ liệu bán hàng AdventureWorks (demo).
-- `du-an/`: **Thư mục dự án, dùng từ buổi 2 đến buổi 8.** Toàn bộ sản phẩm của dự án nằm ở đây:
+- `vanarsdel/`: **Dự án thực hành trên lớp, dùng từ buổi 2 đến buổi 8.** Toàn bộ sản phẩm nằm ở đây:
   `tai-lieu-nghiep-vu.md`, `org-context/`, `knowledge/`, `data/`, `work/`. Khung dựng sẵn, bạn điền
   dần qua từng buổi.
 - `day-4/` đến `day-8/`: mỗi thư mục một README ngắn nêu skill mới, sản phẩm của buổi và nơi ghi.

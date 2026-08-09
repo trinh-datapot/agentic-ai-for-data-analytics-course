@@ -1,6 +1,6 @@
 # Buổi 5 — Xây dựng bộ chỉ số (KPI tree)
 
-Làm việc trong thư mục [`du-an/`](../du-an/).
+Làm việc trong thư mục [`vanarsdel/`](../vanarsdel/).
 
 ## Skill mới của buổi
 
@@ -10,8 +10,8 @@ Làm việc trong thư mục [`du-an/`](../du-an/).
 
 | Sản phẩm | Ghi vào |
 |---|---|
-| KPI tree, kèm danh sách nhánh đã cắt và lý do | `du-an/knowledge/metrics/kpi-tree.md` |
-| Thẻ chỉ số cho từng KPI ưu tiên | `du-an/knowledge/metrics/<tên-chỉ-số>.md` |
+| KPI tree, kèm danh sách nhánh đã cắt và lý do | `vanarsdel/knowledge/metrics/kpi-tree.md` |
+| Thẻ chỉ số cho từng KPI ưu tiên | `vanarsdel/knowledge/metrics/<tên-chỉ-số>.md` |
 
 Mỗi thẻ chỉ số có năm phần: tên, định nghĩa một câu, công thức, đơn vị đo, cách kiểm chứng. Phần
 cuối là thứ buổi 7 dùng để đối chiếu measure.
