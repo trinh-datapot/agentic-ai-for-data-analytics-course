@@ -1,58 +1,62 @@
 ---
-description: Dựng KPI tree từ business question, chọn bộ chỉ số ưu tiên và viết thẻ chỉ số.
-argument-hint: KPI chính hoặc lĩnh vực cần phân rã
+description: Root the metrics upward — decompose the headline metric into a KPI tree, choose the priority set, and write the metric cards.
+argument-hint: the headline KPI or the area to decompose
 ---
 
-# /business-model — Dựng bộ chỉ số
+# /business-model — "Root the metrics upward"
 
-Quyết định sẽ đo cái gì trước khi dựng mô hình: phân rã chỉ số chính thành KPI tree, chọn bộ chỉ số
-ưu tiên, và mô tả từng chỉ số đủ để người khác tính lại ra cùng một con số.
+Decide what will be measured before any data model exists: the **metric tree** rooting every metric
+upward, then a priority set, then one **metric card** per priority metric — enough that someone else
+recomputes the same number. Elicitation is human work: **never guess business meaning** to fill a gap.
 
-## Tình huống sử dụng
+## Use when
 
-Khi đã có business question và cần biết đo bằng chỉ số nào, chỉ số đó cấu thành từ đâu.
+The business questions exist, and what is still open is which metric measures them and how that metric is
+composed.
 
-## Tình huống không nên dùng
+## NOT for
 
-- Viết công thức DAX trong Power BI: dùng `/build-model`.
-- Làm rõ yêu cầu báo cáo: dùng `/gather-requirements`.
-- Kiểm tra một con số đang nghi sai: dùng `/check`.
+- Writing DAX in Power BI: use `/build-model`.
+- Turning a request into a brief: use `/gather-requirements`.
+- A number that is suspected wrong: use `/check`.
 
-## Yêu cầu đầu vào
+## Required inputs
 
-1. `knowledge/reports/*/business-questions.md`: trục để quyết định giữ hay bỏ một nhánh.
-2. `knowledge/models/*/dictionary.md`: để biết công thức có trường dữ liệu thật hay không.
-3. `org-context/glossary.md`: tên chỉ số phải dùng đúng cách gọi đã thống nhất.
+1. `knowledge/reports/*/business-questions.md` — the axis on which a branch stays or goes.
+2. `knowledge/models/*/dictionary.md` — whether a formula has real fields behind it.
+3. `org-context/glossary.md` — metric names use the vocabulary already agreed.
 
-## Các bước thực hiện
+## Playbook
 
-1. **Xác định chỉ số chính.** Với mỗi business question, nêu chỉ số chính cần đo và một câu lý do.
-2. **Dựng bản nháp KPI tree và đánh dấu giả định.** Phân rã theo cách chỉ số được cấu thành, ví dụ
-   doanh thu bằng số đơn vị bán nhân đơn giá, rồi phân rã tiếp theo các chiều phân tích có trong dữ
-   liệu. Mọi dòng chưa có căn cứ trong tài liệu dự án phải ghi rõ là giả định cần xác nhận.
-3. **Trình bày cây trong câu trả lời.** Bản nháp phải hiện ra trong chat để học viên phản biện, không
-   ghi thẳng vào file. Một bản nháp không ai nhìn thấy thì không thu được ý kiến nào.
-4. **Cắt nhánh không gắn câu hỏi.** Mỗi nhánh phải phục vụ một business question cụ thể. Nhánh không
-   gắn được với câu hỏi nào thì đề xuất bỏ, kèm lý do.
-5. **Xếp ưu tiên theo ba tiêu chí.** Với từng chỉ số: có bám business question không, có đo được
-   không, dữ liệu hiện tại có đủ trường để tính không. Đề xuất bộ chỉ số ưu tiên và danh sách loại,
-   mỗi chỉ số bị loại kèm một câu lý do.
-6. **Điểm dừng phê duyệt.** Dừng lại chờ học viên chốt bộ chỉ số ưu tiên, rồi mới ghi file.
-7. **Viết thẻ chỉ số.** Mỗi chỉ số ưu tiên một thẻ gồm năm phần: tên, định nghĩa một câu, công thức
-   tính, đơn vị đo, và cách kiểm chứng (con số nào đối chiếu được với dữ liệu thực tế).
-8. **Kiểm chéo Data Dictionary.** Đối chiếu mọi trường xuất hiện trong công thức với Data Dictionary.
-   Trường nào chưa có thì nêu thành câu hỏi mở, không tự suy ra ý nghĩa.
+1. **Name the root.** Per business question, name the headline metric and one line of rationale.
+2. **Draft the strawman, every row marked.** Decompose along how the metric is composed — revenue as
+   units sold times unit price — then along the analysis dimensions the data actually holds. Every row
+   with no evidence in the project's documentation is marked `ASSUMPTION — for reaction only`.
+3. **Present it IN CHAT as the reaction surface**, never only inside a file write: **a strawman nobody
+   sees elicits nothing.**
+4. **Prune what no question needs.** Every branch serves one named business question. A branch that maps
+   to none is proposed for removal, with the reason. Keeping it for the look of completeness is drift.
+5. **Rank by three criteria.** Per metric: does it track a business question, is it measurable, do the
+   current fields support computing it. Propose the priority set and the dropped list, each drop carrying
+   its reason.
+6. **Approval gate.** The write happens only AFTER the human signs off the in-chat tree. Never open with
+   a file-permission ask.
+7. **One metric card per priority metric**, five parts: the name, a one-sentence definition, the formula,
+   the unit, and how it is verified — the number that reconciles against the real data.
+8. **Cross-check the dictionary.** Walk every field in every formula against the Data Dictionary. A field
+   that is not there becomes an **Open Question**, each with the question that resolves it, never an
+   inferred meaning.
 
-## Kết quả đầu ra
+## Outputs
 
-- `knowledge/metrics/kpi-tree.md`: cây chỉ số, kèm danh sách nhánh đã cắt và lý do.
-- `knowledge/metrics/<tên-chỉ-số>.md`: mỗi chỉ số ưu tiên một thẻ.
-- Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
+- `knowledge/metrics/kpi-tree.md` — the metric tree, with the pruned branches and their reasons.
+- `knowledge/metrics/<metric-name>.md` — one card per priority metric.
+- The advisory footer: `artifacts:` · `state:` · `suggested next:` — a suggestion, never auto-run.
 
-## Ranh giới của skill
+## Guardrails
 
-- Tự đặt định nghĩa nghiệp vụ cho một chỉ số. Định nghĩa là việc của người sở hữu chỉ số, chỗ nào
-  chưa rõ thì ghi thành câu hỏi mở.
-- Giữ lại nhánh phân rã không gắn với business question nào cho đủ hình thức.
-- Ghi thẻ chỉ số khi học viên chưa chốt bộ ưu tiên.
-- Viết công thức dùng trường dữ liệu không có trong Data Dictionary.
+- Authoring the business definition of a metric. **The analyst never signs meaning they invented**;
+  definition belongs to the metric owner, and gaps become Open Questions.
+- A fabricate-the-model ask: refuse it, and carry the alternative — the questions that would resolve it.
+- Writing metric cards before the priority set is signed.
+- A formula over a field that is not in the Data Dictionary.

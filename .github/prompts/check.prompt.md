@@ -1,68 +1,75 @@
 ---
-description: Kiểm chứng một con số, một measure, một mô hình hoặc một file trước khi chia sẻ, và kết luận đạt hay lệch kèm bằng chứng.
-argument-hint: đối tượng cần kiểm chứng, ví dụ measure Doanh thu
+description: One verb for verification — pick a mode (which surface) and a depth (how hard), then conclude with cited evidence.
+argument-hint: what to verify, and against what — for example the Revenue measure
 ---
 
-# /check — Kiểm chứng
+# /check — "Is this right / safe?" (one verb, mode × depth)
 
-Kiểm tra một thứ có đúng không, và kết luận bằng bằng chứng đối chiếu được. Skill này chỉ kết luận,
-không tự sửa.
+One verb for every verification short of a full red-team: pick a **mode** (which surface) and a **depth**
+(how hard you look). **check reports, it never fixes** — findings route to their owning skill.
 
-## Tình huống sử dụng
+## Use when
 
-Khi cần biết một con số, một measure, một mối quan hệ trong model, hoặc một file có đúng và có an
-toàn để chia sẻ hay không.
+Checking whether a number, a measure, a relationship or a file is right, root-causing a wrong number, or
+scanning for PII before something is shared.
 
-## Tình huống không nên dùng
+## NOT for
 
-- Sửa lỗi vừa phát hiện: quay lại skill đã tạo ra nó, ví dụ `/build-model` cho measure sai.
-- Rà soát toàn bộ dự án trước một cửa nghiệm thu: dùng `/review`.
-- Tạo mới một measure: dùng `/build-model`.
+- A full red-team review before certification: use `/review`.
+- Fixing what was found: the owning skill does that, `/build-model` for a wrong measure.
+- Creating a measure: use `/build-model`.
 
-## Bốn mặt kiểm chứng
+## The matrix — mode × depth
 
-| Mặt | Kiểm cái gì |
+**Mode = which surface** you point the check at; **depth = how hard** you look. The two are orthogonal:
+any mode runs at any depth.
+
+| Mode | Surface it verifies |
 |---|---|
-| Dữ liệu | Số dòng, mức chi tiết, giá trị thiếu, đối chiếu với nguồn |
-| Mô hình | Mối quan hệ, chiều lọc, số liệu có bị nhân đôi không |
-| Công thức | Measure so với một con số tính độc lập |
-| An toàn | Dữ liệu cá nhân và thông tin nhạy cảm còn sót trước khi chia sẻ |
+| data | source / prep data quality (row counts, grain, freshness, reconcile) |
+| model | relationships, cardinality, star conformance |
+| dax | measure correctness vs an independent baseline |
+| safe | PII / safe-to-share, before anything leaves |
 
-Ba mức độ sâu: kiểm nhanh (đạt hoặc lệch), kiểm chuẩn (đối chiếu có bằng chứng, mặc định), truy
-nguyên (tìm nguyên nhân gốc của một con số sai).
+Depth: **quick** (spot PASS/FAIL) · **standard** (the default, evidence-checked reconciliation) ·
+**investigate** (root-cause dive on one disputed number → verdict → hand the fix over).
 
-## Yêu cầu đầu vào
+## Required inputs
 
-1. Đối tượng cần kiểm chứng, do học viên nêu rõ. Không tự chọn thay.
-2. Thẻ chỉ số trong `knowledge/metrics/`: định nghĩa và cách kiểm chứng đã ghi.
-3. Một mốc đối chiếu độc lập: số liệu trong thẻ nguồn, bản ghi xử lý, hoặc con số tính trực tiếp từ
-   file dữ liệu gốc.
+1. The target, named by the analyst. No target is a question back, never a guess.
+2. The metric card in `knowledge/metrics/`: a governed metric resolves through its card first.
+3. An **independent baseline**: the source baseline frozen at profiling time, the prep log, or a number
+   computed straight from the raw data file.
 
-## Các bước thực hiện
+## Playbook
 
-1. **Trình bày kế hoạch kiểm chứng trước khi chạy.** Nêu ba thứ: kiểm mặt nào, điều gì được coi là
-   đúng (con số kỳ vọng hoặc mức sai lệch chấp nhận được), và lấy mốc đối chiếu độc lập từ đâu.
-2. **Đối chiếu với nguồn độc lập, không tự chấm bài của mình.** Không được lấy chính công thức đang
-   kiểm chứng chạy lại lần hai rồi kết luận là đúng. Mốc đối chiếu phải đến từ nơi khác: file dữ liệu
-   gốc, bản ghi xử lý, hoặc một cách tính khác.
-3. **Chạy ở chế độ chỉ đọc.** Không sửa model, không sửa dữ liệu, không sửa file trong khi kiểm chứng.
-4. **Lập bảng kết quả.** Mỗi dòng một hạng mục: tên hạng mục, giá trị đang có, giá trị đối chiếu, kết
-   luận đạt hoặc lệch, nguồn của mốc đối chiếu. Hạng mục nào không kiểm được thì ghi rõ là chưa kiểm
-   được và nêu lý do, không im lặng bỏ qua.
-5. **Truy nguyên khi lệch.** Với mỗi dòng lệch, chỉ ra tầng nào sai: dữ liệu nguồn, bước làm sạch,
-   mối quan hệ trong model, hay công thức. Nêu bằng chứng cho kết luận đó.
-6. **Bàn giao, không tự sửa.** Kết thúc bằng đề xuất bước sửa và skill tương ứng, để học viên quyết
-   định. Việc sửa thuộc về lượt làm việc sau.
+**RENDER-THEN-GATE.** Render the check plan before running anything — name the **mode**, the **claim +
+threshold** (exact, or the tolerance), and the **independent baseline** you will reconcile against — so the
+human sees what will be checked and how.
 
-## Kết quả đầu ra
+1. **Scope and pick the mode.** Name the cited target per the evidence rule: the file, the table, the
+   measure.
+2. **Pick the depth.** quick · standard · investigate.
+3. **Run read-only — benchmark, never trust.** **An agent-authored number is reconciled against an
+   INDEPENDENT baseline, never its own re-run.** For a profiled source that baseline is a committed
+   artifact: the source baseline frozen at profiling time. A source never profiled with a baseline is the
+   fallback case — say so in the row, then reconcile live. Nothing is modified during a check.
+4. **Exit on structured evidence.** Results land in the **test log**: one row per item, with the value at
+   hand, the baseline value, **PASS / FAIL / BLOCKED**, and the source of the baseline. An item that cannot
+   be checked is **BLOCKED, never silently skipped**. **No citation, no claim.**
+5. **Root-cause every FAIL.** Name the layer that is wrong — the source data, a cleaning step, a
+   relationship, or the formula — and cite the evidence for that verdict.
+6. **Route the finding — never fix here.** Close on the verdict plus the skill that owns the fix, and let
+   the analyst decide. check's own exit is the verdict and its evidence, with nothing mutated.
 
-- Bảng kết quả kiểm chứng, ghi vào `knowledge/models/<tên-mô-hình>/test-log.md` khi học viên yêu cầu
-  lưu lại.
-- Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
+## Outputs
 
-## Ranh giới của skill
+- The test log at `knowledge/models/<model-name>/test-log.md` when the analyst asks to keep it.
+- The advisory footer: `artifacts:` · `state:` · `suggested next:` — a suggestion, never auto-run.
 
-- Sửa bất cứ thứ gì trong lượt kiểm chứng.
-- Kết luận đạt mà không nêu được mốc đối chiếu độc lập.
-- Bỏ qua một hạng mục không kiểm được mà không ghi lý do.
-- Đưa giá trị của trường dữ liệu cá nhân vào bảng kết quả.
+## Guardrails
+
+- Changing anything inside a check run.
+- A PASS with no independent baseline behind it.
+- A skipped item with no BLOCKED row and no reason.
+- A PII value in the test log.

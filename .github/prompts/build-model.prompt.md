@@ -1,60 +1,65 @@
 ---
-description: Dựng hoặc sửa mô hình dữ liệu trong Power BI qua MCP, gồm bảng, mối quan hệ và measure DAX.
-argument-hint: phần model cần dựng hoặc sửa
+description: Build or change the semantic model over MCP — tables, relationships and DAX measures, each measure traced to a metric card.
+argument-hint: the part of the model to build or change
 ---
 
-# /build-model — Dựng mô hình dữ liệu
+# /build-model — "Build or change the semantic model"
 
-Dựng mô hình star schema và viết measure trên model Power BI đang mở, qua cầu nối MCP. Nguyên tắc
-xuyên suốt: trình bày thiết kế trong câu trả lời trước, thao tác trên model sau.
+Shape the star-schema semantic model — tables, relationships, measures, DAX — with **every measure traced
+to a metric card**. Propose-first is the keystone: **render the design in the reply and get sign-off
+BEFORE anything touches the model.**
 
-## Tình huống sử dụng
+## Use when
 
-Khi cần tạo hoặc sửa: bảng trong model, mối quan hệ giữa các bảng, measure DAX, hoặc đánh dấu bảng
-thời gian.
+Creating or changing a table in the model, a relationship between tables, a DAX measure, or the marking of
+the date table.
 
-## Tình huống không nên dùng
+## NOT for
 
-- Làm sạch dữ liệu trước khi nạp: dùng `/prepare-data`.
-- Quyết định đo chỉ số gì: dùng `/business-model`.
-- Một con số đang nghi sai: dùng `/check`.
+- Cleaning the data before it is loaded: use `/prepare-data`.
+- Deciding what to measure: use `/business-model`.
+- A number that is suspected wrong: use `/check`.
 
-## Yêu cầu đầu vào
+## Required inputs
 
-1. `knowledge/metrics/`: thẻ chỉ số của bộ KPI ưu tiên, gồm công thức và cách kiểm chứng.
-2. `knowledge/models/*/dictionary.md`: tên bảng và tên cột thật trong dữ liệu.
-3. Kết nối MCP tới đúng dự án Power BI (`.pbip`) đang mở.
+1. **The metric-card entry gate**: `knowledge/metrics/` holds the priority metric cards, each with its
+   formula and how it is verified. A measure with no card behind it does not get built.
+2. `knowledge/models/*/dictionary.md` — the real table and column names.
+3. An MCP connection to the right open Power BI project (`.pbip`).
 
-## Các bước thực hiện
+## Playbook
 
-1. **Xác nhận đúng model trước khi làm gì khác.** Liệt kê các bảng trong model đang kết nối và hỏi
-   học viên xác nhận đây đúng là model của dự án. Sai model thì mọi thao tác sau đều sai chỗ.
-2. **Chốt mức chi tiết của bảng fact.** Nêu rõ một dòng trong bảng fact là gì, ví dụ một đơn vị bán
-   ra, hay một dòng hàng trong đơn. Mức chi tiết sai thì mọi con số về sau đều sai.
-3. **Trình bày thiết kế trong câu trả lời.** Với việc dựng model: danh sách bảng fact và dimension,
-   và bảng các mối quan hệ gồm cột khóa hai bên, kiểu quan hệ, chiều lọc. Với việc viết measure:
-   công thức DAX đầy đủ kèm một câu giải thích cách hoạt động.
-4. **Điểm dừng phê duyệt.** Dừng lại chờ học viên xác nhận thiết kế. Không thao tác lên model khi chưa được
-   duyệt.
-5. **Thực hiện qua MCP.** Tạo bảng, quan hệ hoặc measure đúng như thiết kế đã duyệt. Đánh dấu bảng
-   thời gian là Date table nếu model có phân tích theo thời gian.
-6. **Kiểm thử ngay sau khi dựng.** Chạy tối thiểu hai truy vấn: đếm số dòng bảng fact và đối chiếu
-   với nguồn, và tính tổng một chỉ số theo một chiều rồi so với tổng chung. Hai tổng phải bằng nhau.
-   Lệch thì báo rõ nghi ngờ nguyên nhân, thường là sai chiều lọc hoặc khóa trùng.
-7. **Ghi thẻ mô hình.** Ghi vào `knowledge/models/<tên-mô-hình>/model-card.md`: danh sách bảng, bảng
-   các mối quan hệ, danh sách measure kèm công thức, và kết quả hai truy vấn kiểm thử.
+1. **Confirm the model before anything else.** List the tables in the connected model and have the analyst
+   confirm this is the project's model. **The wrong target overwrites another model** — every later
+   operation lands in the wrong place.
+2. **Confirm the star — grain first.** State what one row of the fact table is: one unit sold, or one line
+   item on an order. **The wrong grain makes every number downstream wrong.** Name the dimensions shared
+   across facts, and hold the **date-table law**: a model with time analysis has one marked date table.
+3. **Render the design in the reply.** Building a model: the fact and dimension tables, and the
+   relationship table with the key columns on both sides, the cardinality, and the filter direction.
+   Writing a measure: the full DAX expression plus one line on how it works.
+4. **Approval gate.** Stop for the analyst to sign the rendered design. Nothing is applied before it.
+5. **Execute over MCP.** Create exactly what was signed. Mark the date table where the model carries time
+   analysis.
+6. **The smoke gate — the transient-edit trap.** An MCP edit is transient until it is **serialized back to
+   `<Name>.SemanticModel/definition/`**; confirm the files changed on disk, not just the live model. Then
+   run at least two probes: count the fact rows and reconcile against the source, and total one metric
+   along one dimension against the overall total. **The two totals must match.** On a difference, name the
+   suspected layer — usually the filter direction, or duplicate keys.
+7. **Exit on the model card.** Write `knowledge/models/<model-name>/model-card.md`: the tables, the
+   relationship table, the measures with their formulas, and the results of both probes.
 
-## Kết quả đầu ra
+## Outputs
 
-- Model trong Power BI đã cập nhật và đã lưu, thay đổi nằm trong `<Tên>.SemanticModel/definition/`.
-- Thẻ mô hình trong `knowledge/models/<tên-mô-hình>/model-card.md`.
-- Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
+- The model saved, the changes serialized into `<Name>.SemanticModel/definition/`.
+- The model card in `knowledge/models/<model-name>/model-card.md`.
+- The advisory footer: `artifacts:` · `state:` · `suggested next:` — a suggestion, never auto-run.
 
-## Ranh giới của skill
+## Guardrails
 
-- Thao tác lên model khi chưa xác nhận đang kết nối đúng model của dự án.
-- Sửa model khi học viên chưa duyệt thiết kế.
-- Báo hoàn thành khi chưa chạy truy vấn kiểm thử.
-- Tạo quan hệ lọc hai chiều mà không nêu lý do và không được duyệt riêng, vì quan hệ hai chiều là
-  nguyên nhân phổ biến của số liệu bị nhân đôi.
-- Viết measure dùng tên bảng hoặc tên cột không có thật trong model.
+- Touching the model before the target is confirmed, or before the design is signed.
+- Reporting done before the probes ran, or while the edits are still transient.
+- A bidirectional relationship with no stated reason and no separate sign-off: bidirectional filtering is
+  the common cause of double-counted numbers.
+- A snowflaked dimension with no reason recorded.
+- A measure over a table or column name that does not exist in the model.

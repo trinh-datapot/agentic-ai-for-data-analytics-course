@@ -1,69 +1,66 @@
 ---
-description: Khảo sát một nguồn dữ liệu lần đầu một cách an toàn, rồi ghi kết quả thành thẻ nguồn.
-argument-hint: tên file hoặc tên bảng cần khảo sát
+description: Meet a data source for the first time, profile it safely, and exit on a source card.
+argument-hint: the file or the table to profile
 ---
 
-# /profile-sources — Khảo sát nguồn dữ liệu
+# /profile-sources — "Meet the source"
 
-Gặp một nguồn dữ liệu lần đầu: khảo sát chất lượng bằng các chỉ số tổng hợp, phát hiện các vấn đề
-kèm bằng chứng, và kết thúc bằng một thẻ nguồn dùng lại được cho cả dự án.
+Meet a data source for the first time: profile it safely, distill what may be committed, and exit on a
+source card. The keystone discipline: **real values live and die in the temp zone — only structure
+leaves it.**
 
-Nguyên tắc xuyên suốt: giá trị thô ở lại trong file dữ liệu, chỉ cấu trúc và chỉ số tổng hợp mới
-được đưa vào tài liệu.
+## Use when
 
-## Tình huống sử dụng
+Finding out what is actually in a source: which tables, which columns, the types, how much is missing,
+duplicates, out-of-range values.
 
-Khi cần biết trong một nguồn dữ liệu thực tế có gì: bảng nào, cột nào, kiểu dữ liệu, mức độ thiếu,
-trùng lặp, giá trị bất thường.
+## NOT for
 
-## Tình huống không nên dùng
+- An ad-hoc data pull: use `/quick-analysis`.
+- Shaping and cleaning the data: use `/prepare-data`.
+- A live card that already answers the question: **re-read the card, no probe.**
 
-- Cần một con số hoặc một lát cắt số liệu: dùng `/quick-analysis`.
-- Cần làm sạch và biến đổi dữ liệu: dùng `/prepare-data`.
-- Thẻ nguồn đã có và đã trả lời được câu hỏi: đọc lại thẻ, không khảo sát lại.
+## Required inputs
 
-## Yêu cầu đầu vào
+1. `knowledge/sources/` first. If a live card already answers, exit with the card confirmed and profile
+   only the gap.
+2. `org-context/glossary.md` — the business vocabulary, so the fields are named the way this org names
+   them.
+3. The project's business documentation where one exists, to know which fields matter to the problem.
 
-1. `knowledge/sources/` trước tiên. Nếu đã có thẻ cho nguồn này, đọc thẻ và báo lại, chỉ khảo sát
-   phần còn thiếu.
-2. `org-context/glossary.md`: thuật ngữ nghiệp vụ, để gọi tên các trường cho đúng.
-3. Tài liệu nghiệp vụ của dự án nếu có, để biết trường nào quan trọng với bài toán.
+**Never run against a source the analyst has not named.**
 
-Học viên phải nói rõ khảo sát nguồn nào. Không tự chọn nguồn thay học viên.
+## Playbook
 
-## Các bước thực hiện
+1. **Name the PII before the data is read.** List the fields that can identify one person: full name,
+   email, phone, address, personal ID number. Report that list before anything else happens.
+2. **Safe profile — aggregates only, safe by construction.** Per table: row counts, null %,
+   distinct/uniqueness, duplicate rows, and the value range of the numeric and date columns. Never a raw
+   value of a PII field.
+3. **Every issue carries counted evidence.** How many rows, in which column. No evidence, not an issue.
+4. **Capture the source baseline.** Per table that will be used: row counts, the sum of the key numeric
+   column, and the time window when the table has a date column — aggregates only. Freeze it **before
+   the data is cleaned or transformed**: this is the ONLY thing `/check` reconciles against later.
+   Without it, `/check` has nothing independent to compare.
+5. **Approval gate.** Present the issues and propose **up to 10 `dq:` rules**, seeded by what the
+   profile surprised you with, then stop for the analyst to choose which ones to keep. Keep only what
+   touches the project's analysis questions.
+6. **Exit on the source card.** Write `knowledge/sources/<source-name>.md`: the source information
+   (file, how it was obtained, when it was profiled), the structure of every table and column, the
+   agreed `dq:` rules, and the **"What we take"** table naming the tables this problem will use.
+7. **Coverage — name what is not taken.** For every table NOT carried into "What we take", state one
+   line of reason. Never silently skipped.
 
-1. **Nhận diện dữ liệu cá nhân trước khi đọc dữ liệu.** Liệt kê các trường có khả năng là dữ liệu
-   cá nhân: họ tên, email, số điện thoại, địa chỉ, mã định danh cá nhân. Báo danh sách này cho học
-   viên trước khi làm bất cứ việc gì khác.
-2. **Khảo sát bằng chỉ số tổng hợp.** Với mỗi bảng: số dòng, danh sách cột và kiểu dữ liệu, tỷ lệ ô
-   trống theo cột, số giá trị phân biệt, số dòng trùng lặp, khoảng giá trị của các cột số và cột
-   ngày. Chỉ dùng số tổng hợp, không trích giá trị thô của các trường cá nhân.
-3. **Nêu vấn đề kèm bằng chứng.** Mỗi vấn đề chất lượng ghi kèm bằng chứng đếm được: bao nhiêu dòng,
-   ở cột nào. Không có bằng chứng thì không ghi thành vấn đề.
-4. **Chốt mốc số liệu.** Với mỗi bảng sẽ dùng, ghi lại số dòng, một cột số chính kèm tổng của cột
-   đó, và khoảng thời gian nếu bảng có cột ngày. Chốt các số này **trước khi dữ liệu bị làm sạch hay
-   biến đổi**, vì đây là bộ số duy nhất để đối chiếu về sau. Chỉ ghi số tổng hợp, không ghi giá trị
-   của từng dòng.
-5. **Điểm dừng phê duyệt.** Trình bày danh sách vấn đề và đề xuất tối đa 10 quy tắc chất lượng dữ liệu, dừng
-   lại chờ học viên chọn quy tắc nào giữ lại. Chỉ giữ những vấn đề ảnh hưởng tới câu hỏi phân tích
-   của dự án.
-6. **Ghi thẻ nguồn.** Ghi vào `knowledge/sources/<tên-nguồn>.md` với bốn phần: thông tin nguồn (tên
-   file, cách lấy, thời điểm khảo sát), bảng cấu trúc từng bảng và cột, danh sách quy tắc chất lượng
-   dữ liệu đã chốt, và bảng "Dùng gì từ nguồn này" liệt kê các bảng sẽ dùng cho bài toán.
-7. **Nêu phần không dùng.** Với mỗi bảng không đưa vào bảng "Dùng gì từ nguồn này", ghi một dòng lý
-   do. Không im lặng bỏ qua.
+## Outputs
 
-## Kết quả đầu ra
+- A source card in `knowledge/sources/`, its source-baseline section filled.
+- The detailed profile, where it runs long, kept in `work/`. It never enters the card.
+- The advisory footer: `artifacts:` · `state:` · `suggested next:` — a suggestion, never auto-run.
 
-- Một thẻ nguồn trong `knowledge/sources/`, có mục mốc số liệu điền đầy đủ.
-- Bản khảo sát chi tiết, nếu dài, ghi vào `work/`. Không đưa vào thẻ.
-- Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
+## Guardrails
 
-## Ranh giới của skill
-
-- Trích giá trị thô của trường dữ liệu cá nhân vào thẻ nguồn, vào file khác, hoặc vào câu trả lời.
-  Khi học viên yêu cầu, từ chối và đề xuất phương án thay thế: báo chỉ số tổng hợp, hoặc che trường.
-- Kết luận về chất lượng dữ liệu khi chưa đếm được bằng chứng.
-- Chốt mốc số liệu sau khi dữ liệu đã bị làm sạch. Mốc chốt muộn không còn là mốc độc lập.
-- Ghi đè một thẻ nguồn đã có khi chưa được học viên duyệt.
+- Lifting a raw PII value into the card, into another file, or into the reply. **Refuse and carry the
+  alternative**: report the aggregate, or mask the field.
+- A conclusion about data quality with no counted evidence behind it.
+- Capturing the source baseline after the data was cleaned. A late baseline is not an independent one.
+- Overwriting a source card the analyst has not approved.

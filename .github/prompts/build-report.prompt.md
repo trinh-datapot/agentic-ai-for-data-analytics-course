@@ -1,60 +1,65 @@
 ---
-description: Dựng hoặc sửa trang báo cáo trong Power BI theo đúng report spec đã duyệt, rồi kiểm chứng số trên trang.
-argument-hint: trang cần dựng hoặc phần cần sửa
+description: Implement the approved design — build the report pages verbatim from the signed spec, then verify the numbers on the page.
+argument-hint: the page to build, or the part to change
 ---
 
-# /build-report — Dựng trang báo cáo
+# /build-report — "implement the approved design"
 
-Biến report spec đã duyệt thành trang báo cáo thật trong Power BI. Nguyên tắc xuyên suốt: skill này
-**thi công theo spec, không thiết kế lại**. Muốn đổi thiết kế thì quay lại `/design-report`.
+Turn an approved design — a signed `report-spec.md` from `/design-report` — or a page edit into real pages.
+**This playbook never re-designs: it implements the spec verbatim; a design change routes back to
+`/design-report`.**
 
-## Tình huống sử dụng
+## Use when
 
-Khi đã có report spec được duyệt và cần dựng trang, hoặc cần sửa một phần của trang đã dựng.
+Building or editing report pages, visuals and slicers against a signed spec.
 
-## Tình huống không nên dùng
+## NOT for
 
-- Chưa có report spec được duyệt: dùng `/design-report` trước.
-- Muốn đổi loại biểu đồ hoặc bố cục so với spec: quay lại `/design-report`, không tự đổi ở đây.
-- Sửa measure hoặc quan hệ trong model: dùng `/build-model`.
-- Số trên trang nghi sai: dùng `/check`.
+- No signed spec: use `/design-report` first.
+- A different chart type or layout than the spec: back to `/design-report`, never changed here.
+- A measure or a relationship in the model: use `/build-model`.
+- A number on the page that looks wrong: use `/check`.
 
-## Yêu cầu đầu vào
+## Required inputs
 
-1. `knowledge/reports/*/report-spec.md` đã được duyệt. Không có spec, hoặc spec chưa duyệt, thì dừng
-   lại và đề xuất chạy `/design-report` trước.
-2. Kết nối MCP tới đúng dự án Power BI (`.pbip`) đang mở.
-3. `knowledge/models/*/model-card.md`: tên measure và tên cột thật trong model.
+1. The locked `knowledge/reports/*/report-spec.md`, and only **if it carries its sign-off**: **a spec-shaped
+   file without it is NOT consumable** — that routes back to `/design-report`. Locked means consume, never
+   re-plan.
+2. An MCP connection to the right open Power BI project (`.pbip`).
+3. `knowledge/models/*/model-card.md` — the real measure and column names. An edit reads the report card
+   first: the built page is the reference.
 
-## Các bước thực hiện
+## Playbook
 
-1. **Xác nhận đúng dự án trước khi làm gì khác.** Liệt kê các trang hiện có và hỏi học viên xác nhận
-   đây đúng là báo cáo của dự án.
-2. **Đọc lại spec và nêu phạm vi lượt này.** Dựng trang nào, gồm những visual nào, mỗi visual trả lời
-   câu hỏi nào. Nếu spec thiếu thông tin để dựng, hỏi lại, không tự quyết thay.
-3. **Điểm dừng phê duyệt.** Trình bày phạm vi và danh sách visual sẽ dựng, dừng lại chờ học viên xác
-   nhận trước khi thao tác lên báo cáo.
-4. **Dựng bản nháp trước, trang trí sau.** Dựng đúng bố cục và đúng loại visual theo spec, chưa chỉnh
-   màu sắc và định dạng. Mục tiêu của bước này là kiểm xem trang có trả lời được câu hỏi không.
-5. **Đối chiếu số trên trang với measure.** Với mỗi visual, so số hiển thị với kết quả tính trực tiếp
-   từ measure. Lệch thì báo rõ, không tự sửa số bằng cách đổi bộ lọc.
-6. **Áp theme và hoàn thiện định dạng** sau khi số đã đúng: màu theo quy ước, tiêu đề rõ nghĩa, định
-   dạng số và đơn vị.
-7. **Rà lại theo spec.** Đi từng dòng của spec cho trang này: mỗi câu hỏi trong spec có đúng một visual
-   trả lời chưa. Câu nào chưa có thì nêu ra, đây là thiếu sót của bước dựng, không phải của spec.
-8. **Ghi lại vào thẻ báo cáo.** Ghi vào `knowledge/reports/<tên-báo-cáo>/report-card.md`: danh sách
-   trang đã dựng, mỗi trang gồm các visual và câu hỏi tương ứng, cùng kết quả đối chiếu số.
+1. **Confirm the project before anything else.** List the existing pages and have the analyst confirm this
+   is the project's report. The wrong target clobbers another report.
+2. **Re-read the spec and state the scope of this run.** Which page, which visuals, and the question each
+   visual answers. Where the spec lacks what the build needs, ask; never settle it here.
+3. **Approval gate.** Present the scope and the visual list, and stop before touching the report.
+4. **The draft-build gate — minimal decoration first.** Build the bindings and the layout from the spec with
+   no colour or formatting work yet, then review the real render against the spec's reasoning: per page, the
+   question it answers. **Polish comes after the numbers are right.** A small edit to an existing page skips
+   this gate.
+5. **Reconcile the numbers on the page against the measures.** Per visual, compare what is displayed with
+   the result computed straight from the measure. Report every difference.
+6. **Apply the theme and finish the formatting** once the numbers are right: colours per the convention,
+   meaningful titles, number formats and units. The theme owns the chrome — never hand-set what it rules.
+7. **Coverage re-walk.** Walk the spec row by row against the BUILT visuals: every question is realized by a
+   placement, or recorded as descoped. **An orphan is a build gap fixed before sign-off** — a defect of the
+   build, not of the spec.
+8. **Exit on the report card.** Write `knowledge/reports/<report-name>/report-card.md`: the pages built, the
+   visuals and their questions, and the reconciliation results.
 
-## Kết quả đầu ra
+## Outputs
 
-- Trang báo cáo trong dự án Power BI, đã lưu, thay đổi nằm trong `<Tên>.Report/`.
-- Thẻ báo cáo trong `knowledge/reports/<tên-báo-cáo>/report-card.md`.
-- Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
+- The report pages saved, the changes landing in `<Name>.Report/`.
+- The report card in `knowledge/reports/<report-name>/report-card.md`.
+- The advisory footer: `artifacts:` · `state:` · `suggested next:` — a suggestion, never auto-run.
 
-## Ranh giới của skill
+## Guardrails
 
-- Đổi loại biểu đồ, bố cục hoặc phạm vi so với spec đã duyệt. Đổi thiết kế thì quay lại `/design-report`.
-- Dựng trang khi report spec chưa được duyệt.
-- Báo hoàn thành khi chưa đối chiếu số trên trang với measure.
-- Chỉnh bộ lọc của visual để số hiển thị khớp với kỳ vọng, thay vì truy nguyên chỗ lệch.
-- Dựng visual dùng measure hoặc cột không có thật trong model.
+- Changing the chart type, the layout or the scope against the signed spec. Drift here is a build bug.
+- Building while the spec is unsigned.
+- "Done, verify later": reporting done before the numbers were reconciled against the measures.
+- Adjusting a visual's filters so the number matches the expectation, instead of root-causing the difference.
+- A visual bound to a measure or column that does not exist in the model.

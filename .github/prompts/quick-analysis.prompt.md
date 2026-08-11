@@ -1,57 +1,60 @@
 ---
-description: Phân tích nhanh dữ liệu của dự án và kết xuất thành một trang báo cáo HTML tự chứa.
-argument-hint: câu hỏi kinh doanh cần trả lời, hoặc tên thẻ báo cáo cần dựng
+description: A quick ad-hoc analysis, a cut of our numbers rendered into a self-contained HTML page.
+argument-hint: the business question to answer, or the report card to build
 ---
 
-# /quick-analysis — Phân tích nhanh và kết xuất báo cáo
+# /quick-analysis — "Show me the numbers / make it shareable"
 
-Trả lời một câu hỏi kinh doanh bằng số liệu tính từ dữ liệu thực tế của dự án, và kết xuất thành
-một trang HTML mở được trên trình duyệt.
+Render cited analysis into a self-contained HTML deliverable, computed from the project's real data.
+One exit only, a rendered page, and **never a raw-row dump**.
 
-## Tình huống sử dụng
+## Use when
 
-Khi học viên cần một lát cắt số liệu ("doanh thu theo vùng năm nay") hoặc một trang báo cáo tổng
-hợp các câu hỏi đã có trong thẻ báo cáo.
+Pulling a number or a cut — "revenue by region this year" — or turning the questions already listed in
+a report card into a deliverable.
 
-## Tình huống không nên dùng
+## NOT for
 
-- Hỏi định nghĩa một thuật ngữ hoặc nguồn gốc một trường dữ liệu: trả lời trực tiếp từ
-  `org-context/glossary.md` và thẻ nguồn, không cần dựng báo cáo.
-- Số liệu đang nghi sai: dùng `/check`.
-- Dựng trang báo cáo trong Power BI: việc đó thuộc các buổi sau, không làm ở đây.
+- A definition or lineage question: answer it from `org-context/glossary.md` and the source card.
+- A wrong number: use `/check`.
+- A Power BI report page: that is `/build-report`, in the later sessions.
 
-## Yêu cầu đầu vào
+## Required inputs
 
-Trước khi tính bất kỳ số nào, đọc:
+Cards first. Before any number is computed, read:
 
-1. `org-context/org-profile.md` và `org-context/glossary.md`: doanh nghiệp là ai, thuật ngữ hiểu thế nào.
-2. Thẻ nguồn trong `knowledge/sources/`: ý nghĩa từng cột và các điểm cần lưu ý của dữ liệu.
-3. Thẻ chỉ số trong `knowledge/metrics/` nếu câu hỏi có liên quan tới một chỉ số đã định nghĩa.
-4. Thẻ báo cáo trong `knowledge/reports/` nếu học viên chỉ định một báo cáo cụ thể.
+1. `org-context/org-profile.md` and `org-context/glossary.md` — who the business is, and how each term
+   is understood here.
+2. The source card in `knowledge/sources/` — what each column means, and the caveats that ride with it.
+3. The metric card in `knowledge/metrics/` when the question touches a governed metric.
+4. The report card in `knowledge/reports/` when a specific report is named.
 
-Thiếu ngữ cảnh thì hỏi lại, không đoán.
+Context that is missing is asked for, never guessed.
 
-## Các bước thực hiện
+## Playbook
 
-1. **Xác định phạm vi.** Nêu lại: câu hỏi nào cần trả lời, ai đọc báo cáo, dữ liệu lấy từ file nào.
-2. **Nêu cách tính trước khi tính.** Với mỗi câu hỏi, nói rõ sẽ dùng cột nào, phép tính nào, lọc gì.
-   Nếu một cột có điểm cần lưu ý trong thẻ nguồn, nêu ra ngay tại đây.
-3. **Điểm dừng phê duyệt.** Trình bày phạm vi và cách tính, dừng lại chờ học viên xác nhận. Không kết xuất
-   báo cáo khi chưa được duyệt.
-4. **Tính số liệu từ dữ liệu thực tế.** Đọc trực tiếp file dữ liệu. Không ước lượng, không dùng số
-   nhớ từ lượt trước.
-5. **Kết xuất một trang HTML tự chứa.** Mỗi câu hỏi một biểu đồ kèm một câu nhận định. Ghi rõ tên
-   file dữ liệu nguồn và thời điểm kết xuất ở cuối trang.
-6. **Tự kiểm chứng.** Báo lại một mốc kiểm chứng để học viên đối chiếu: tổng của chỉ số chính trên
-   toàn bộ dữ liệu, và số dòng đã đọc. Nêu rõ nếu có dòng bị loại và lý do.
+1. **Scope the cut.** Name it back: which question is answered, who reads it, which file the data comes
+   from.
+2. **Render the calculation before running it.** Per question: the columns, the arithmetic, the filters.
+   A column carrying a caveat in the source card is surfaced here, not after the fact.
+3. **Approval gate.** Present the scope and the calculation, and stop for the analyst's go-ahead.
+   Nothing renders before it.
+4. **Compute against the real data.** Read the data file itself. No estimate, and no number carried over
+   from an earlier turn.
+5. **Render the deliverable — self-contained, cited HTML.** One chart per question, each with one line
+   of reading. The source data file and the render timestamp are cited at the foot of the page. Content
+   must already exist in the cards: **a number with no card behind it stops at the evidence rule**.
+6. **Self-verify.** Report the baseline the analyst reconciles against: the total of the headline metric
+   across the whole dataset, and the row count read. Excluded rows are named, with the reason.
 
-## Kết quả đầu ra
+## Outputs
 
-- Một file HTML trong thư mục của buổi học, đặt tên theo nội dung báo cáo.
-- Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
+- One HTML file in the session folder, named after what it answers.
+- The advisory footer: `artifacts:` · `state:` · `suggested next:` — a suggestion, never auto-run.
 
-## Ranh giới của skill
+## Guardrails
 
-- Đưa giá trị của trường dữ liệu cá nhân vào báo cáo hoặc vào câu trả lời.
-- Đưa vào báo cáo một con số không tính được từ dữ liệu trong repo.
-- Sửa dữ liệu gốc. Mọi kết quả trung gian ghi vào `work/`.
+- **Refuse a raw-row or PII ask**, and carry the alternative: the aggregate, or the masked field. A
+  refusal never dead-ends.
+- A number in the deliverable that cannot be computed from the data in the repo.
+- Editing the source data. Intermediate results land in `work/`, which is never a source of truth.

@@ -1,60 +1,65 @@
 ---
-description: Cập nhật sản phẩm đang chạy khi yêu cầu, đối tượng sử dụng hoặc nguồn dữ liệu thay đổi, kèm kiểm thử hồi quy.
-argument-hint: thay đổi cần xử lý
+description: Something changed on the running estate — classify the change, scope its blast radius, update the docs first, and exit on a dated record with a regression test.
+argument-hint: the change to handle
 ---
 
-# /fix — Xử lý một thay đổi trên sản phẩm đang chạy
+# /fix — "Something changed on the running estate"
 
-Áp một thay đổi vào dự án đã bàn giao mà không phá vỡ những gì đang chạy: xác định phạm vi lan tỏa,
-cập nhật tài liệu trước rồi mới tới sản phẩm, và kết thúc bằng kiểm thử hồi quy.
+Apply a change to a handed-over project without breaking what runs: classify it, scope its **blast radius**,
+update the documentation before the deliverable, and exit on a **dated change record**. Nothing is applied
+un-proposed.
 
-## Tình huống sử dụng
+## Use when
 
-Khi có thay đổi về yêu cầu nghiệp vụ, về đối tượng sử dụng, hoặc về nguồn dữ liệu, và cần cập nhật
-một dự án đang chạy.
+The business requirement, the audience, or the data source has changed, and a running project has to follow.
 
-## Tình huống không nên dùng
+## NOT for
 
-- Một thứ lẽ ra đúng mà đang sai: đó là lỗi, dùng `/check` để truy nguyên rồi sửa ở tầng gây lỗi.
-- Dựng mới từ đầu: dùng skill của tầng tương ứng, `/build-model` hoặc `/build-report`.
-- Chưa rõ thay đổi là gì: làm rõ với người yêu cầu trước, không đoán.
+- Something that should be right and is wrong: that is a defect. Root-cause it with `/check`, then fix at the
+  layer that caused it.
+- Building new: `/build-model` or `/build-report` own their layers.
+- A change nobody has stated clearly: settle it with the requester first, never guess.
 
-## Yêu cầu đầu vào
+## Required inputs
 
-1. Mô tả thay đổi, càng cụ thể càng tốt: ai yêu cầu, vì sao, kỳ vọng kết quả ra sao.
-2. Bộ tài liệu hiện có: `knowledge/reports/` (Report Proposal, business question, report spec),
-   `knowledge/metrics/`, `knowledge/models/`, `knowledge/sources/`.
-3. Với thay đổi về nguồn dữ liệu: đường dẫn nguồn mới.
+1. The change as stated: who asked, why, and the expected outcome.
+2. The documentation as it stands — cards first: `knowledge/reports/` (Report Proposal, business questions,
+   report spec), `knowledge/metrics/`, `knowledge/models/`, `knowledge/sources/`.
+3. For a source change: the path to the new source.
 
-## Các bước thực hiện
+## Playbook
 
-1. **Phân loại thay đổi trước khi làm gì khác.** Ba loại: thêm tình huống sử dụng (câu hỏi mới),
-   thêm đối tượng sử dụng (cùng câu hỏi, khác mức chi tiết), hoặc thêm nguồn dữ liệu. Phân loại sai
-   thì phạm vi lan tỏa ước lượng sai theo.
-2. **Xác định phạm vi lan tỏa.** Lập bảng: tầng nào bị chạm, file nào phải sửa, và những gì đang chạy
-   có thể bị ảnh hưởng. Đi theo thứ tự thẻ nguồn → Data Dictionary → model → measure → report spec →
-   trang báo cáo. Nêu rõ tầng nào không bị chạm.
-3. **Điểm dừng phê duyệt.** Trình bày bảng phạm vi lan tỏa và kế hoạch cập nhật, dừng chờ học viên
-   duyệt. Không sửa bất cứ thứ gì khi chưa được duyệt.
-4. **Cập nhật tài liệu trước, sản phẩm sau.** Sửa thẳng sản phẩm rồi mới quay lại tài liệu là cách
-   làm hai thứ lệch nhau; sau vài lần thì không ai tin tài liệu nữa.
-5. **Với thay đổi về nguồn dữ liệu, giữ nguyên tắc một thực thể một bảng dimension.** Nguồn mới có
-   bảng mô tả cùng một thực thể nghiệp vụ với bảng đang có thì nối vào bảng cũ, không dựng bảng song
-   song. Hai bảng cho cùng một thực thể sẽ làm số bị đếm hai lần.
-6. **Kiểm thử hồi quy.** Trước khi sửa, ghi lại số hiện tại của các chỉ số chính. Sau khi sửa, chạy
-   lại và đối chiếu. Mỗi chỗ đổi phải giải thích được là do thay đổi này, không phải do vỡ.
-7. **Ghi lại thay đổi.** Ghi vào `knowledge/records/change-<ngày>.md`: thay đổi là gì, ai yêu cầu,
-   các file đã cập nhật, và kết quả kiểm thử hồi quy.
+1. **Classify the change first, and render it as the first line of prose.**
+   `change class: <new-use-case | new-audience | new-source>` — a new question, the same question at a
+   different grain, or a new source. The class is rendered even when the target is still ambiguous, because
+   **the wrong class scopes the blast radius wrong.**
+2. **Documentation first — reuse before re-deriving.** Read the existing cards before any fresh analysis. A
+   card that already answers beats re-deriving it.
+3. **Scope the blast radius.** Build the table: which layer is touched, which files change, and what already
+   running could be affected. Walk it in order — source card → Data Dictionary → model → measures → report
+   spec → report pages. **Name the layers NOT touched**, so considered is distinguishable from overlooked.
+4. **Approval gate.** Present the blast-radius table and the update plan, and stop. **Propose the fix, don't
+   guess it**: never "just re-run, rebuild, or re-model" ahead of the evidence.
+5. **Update the documentation before the deliverable.** Editing the deliverable and returning to the docs
+   later is how the two drift; after a few rounds nobody trusts the docs.
+6. **On a source change, hold one entity, one shared dimension.** A new table describing a business entity
+   that already has a dimension joins the existing one. **Two tables for one entity double-count the
+   numbers.**
+7. **Regression test.** Capture the current values of the headline metrics **before** the change, re-run them
+   after, and reconcile. Every difference has to be explainable by this change, not by something that broke.
+8. **Record the exit.** Write `knowledge/records/change-<date>.md`: the change, who asked, the files updated,
+   and the regression table. **The change is not done until the record exists.**
 
-## Kết quả đầu ra
+## Outputs
 
-- Tài liệu và sản phẩm đã cập nhật đồng bộ.
-- `knowledge/records/change-<ngày>.md` kèm bảng kiểm thử hồi quy.
-- Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
+- The documentation and the deliverable updated in the same change.
+- `knowledge/records/change-<date>.md` with the regression table.
+- The advisory footer: `artifacts:` · `state:` · `suggested next:` — a suggestion, never auto-run.
 
-## Ranh giới của skill
+## Guardrails
 
-- Sửa sản phẩm mà không cập nhật tài liệu tương ứng.
-- Báo hoàn thành khi chưa chạy kiểm thử hồi quy.
-- Mở rộng phạm vi ngoài thay đổi được yêu cầu. Thấy chỗ khác đáng sửa thì ghi lại thành đề xuất, không tự làm.
-- Dựng bảng dimension mới cho một thực thể nghiệp vụ đã có bảng.
+- Changing the deliverable without the matching documentation update.
+- Reporting done before the regression test ran, or before the record exists.
+- Widening scope past the requested change. Something else worth fixing is recorded as a proposal, never done
+  in passing.
+- A second dimension table for a business entity that already has one.

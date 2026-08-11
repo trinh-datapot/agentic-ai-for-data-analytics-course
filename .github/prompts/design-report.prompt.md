@@ -1,59 +1,65 @@
 ---
-description: Biến kế hoạch phân tích đã duyệt thành một report spec dựng được, chốt trước khi bắt tay dựng báo cáo.
-argument-hint: báo cáo cần thiết kế
+description: THE design gate — turn an approved brief into a locked, implementable report spec before any page is built.
+argument-hint: the report to design
 ---
 
-# /design-report — Thiết kế báo cáo trước khi dựng
+# /design-report — THE design gate (before the build)
 
-Chốt hình hài báo cáo thành một bản đặc tả (report spec) đủ rõ để dựng: mỗi trang trả lời câu hỏi
-nào, dùng biểu đồ gì, lấy chỉ số nào, trình bày theo quy ước giao diện nào. Đây là cửa thiết kế,
-chạy trước khi có bất kỳ trang báo cáo nào.
+Turn a signed brief into an approved, implementable design: which question each page answers, which chart
+carries it, which measure it reads, under which interface conventions. **The spec is the ONE contract**, and
+this gate runs before any report page exists.
 
-## Tình huống sử dụng
+## Use when
 
-Khi đã có business question, bộ chỉ số và model đã kiểm chứng, và cần chốt thiết kế trước khi dựng.
+Designing pages and layout from a brief, with the business questions, the metric set and a verified model
+already in hand.
 
-## Tình huống không nên dùng
+## NOT for
 
-- Chưa có business question và Report Proposal: dùng `/gather-requirements` trước.
-- Đã có spec được duyệt và đang dựng trang: dùng `/build-report`.
-- Chỉ cần một trang HTML trình bày kết quả đã có: dùng `/quick-analysis`.
+- No signed brief yet: `/gather-requirements` first.
+- Implementing an approved design: use `/build-report`.
+- An HTML deliverable of findings that already exist: use `/quick-analysis`.
 
-## Yêu cầu đầu vào
+## Required inputs
 
-1. `knowledge/reports/*/report-proposal.md` và `business-questions.md`: báo cáo phục vụ ai, trả lời
-   câu hỏi nào. Không có thì dừng lại, đề xuất chạy `/gather-requirements` trước.
-2. `knowledge/metrics/`: thẻ chỉ số của bộ KPI ưu tiên, để biết mỗi câu hỏi đo bằng chỉ số nào.
-3. `knowledge/models/*/model-card.md`: bảng, quan hệ và measure đang có thật trong model.
-4. Quy ước giao diện của dự án nếu có: màu, font, kích thước trang.
+1. A **signed** brief: `knowledge/reports/*/report-proposal.md` and `business-questions.md`. None means
+   STOP and propose `/gather-requirements`. Its **data-shape gate must be checked** — unchecked sends the
+   work back there, not forward.
+2. `knowledge/metrics/` — the priority metric cards, so each question has the metric that answers it.
+3. `knowledge/models/*/model-card.md` — the tables, relationships and measures that really exist.
+4. The project's interface conventions where there are any: theme colours, font, page size.
 
-## Các bước thực hiện
+## Playbook
 
-1. **Đối chiếu đầu vào trước khi thiết kế.** Với mỗi business question, kiểm ba thứ: có chỉ số nào
-   trả lời được không, chỉ số đó đã có measure trong model chưa, mức chi tiết của model có đủ để cắt
-   theo chiều mà câu hỏi cần không. Câu nào chưa đủ thì nêu rõ, không thiết kế trang cho nó rồi mới
-   phát hiện không dựng được.
-2. **Chốt ba nhóm yêu cầu.** Nghiệp vụ: đối tượng đọc từng trang, tình huống họ mở báo cáo, câu hỏi
-   trang đó trả lời. Kỹ thuật: kích thước trang, theme màu và font, quy ước đặt tên trang và visual.
-   Trải nghiệm: thứ bậc thông tin trên trang, chỉ số tổng đặt ở đâu, chi tiết đặt ở đâu.
-3. **Lập kế hoạch trang.** Mỗi trang một dòng: tên trang, đối tượng đọc, câu hỏi trả lời, các chỉ số
-   dùng, và luồng đi từ trang này sang trang khác.
-4. **Chọn loại biểu đồ theo loại câu hỏi, kèm lý do.** Mỗi visual ghi rõ: trả lời câu hỏi nào, dùng
-   measure nào, cắt theo chiều nào. Không đề xuất biểu đồ chỉ vì nó nhìn đẹp.
-5. **Điểm dừng phê duyệt.** Trình bày toàn bộ spec trong câu trả lời và dừng lại chờ học viên duyệt.
-   Không ghi file, và tuyệt đối không dựng trang nào khi spec chưa được duyệt.
-6. **Ghi report spec.** Ghi vào `knowledge/reports/<tên-báo-cáo>/report-spec.md`: ba nhóm yêu cầu,
-   bảng kế hoạch trang, và với mỗi trang là danh sách visual kèm câu hỏi, measure và chiều phân tích.
-7. **Nêu phần không thiết kế trong đợt này**, kèm lý do, để phạm vi không bị hiểu là đã hứa.
+1. **Inputs before bindings.** Read the model inventory with the profiling evidence beside it, then per
+   business question check three things: a metric answers it, that metric already has a measure, and the
+   grain supports the cut the question needs. **Design binds only to measures and columns that exist, or
+   that are named as prerequisites: page questions may precede the model, bindings may not.** Anything
+   short is named now, never discovered at build time.
+2. **Feed the org inputs.** Business: who reads each page, the situation in which they open it, the question
+   it answers. Technical: page size, the theme colours and font, the naming conventions for pages and
+   visuals. Experience: the information hierarchy — where the totals sit, where the detail sits.
+3. **Plan the pages.** One row per page: the name, its readers, the question it answers, the metrics it
+   uses, and the flow from this page onward.
+4. **Chart selection — by question type, with the reason.** Every visual records the question it answers,
+   the measure it reads, and the dimension it cuts by. **Never a chart proposed because it looks good.**
+5. **Approval gate.** Present the whole spec in the reply and stop for approval. Nothing is written, and
+   **no page whatsoever is built, before the spec is approved** — chat approval is not the sign-off; the
+   spec carries it.
+6. **Write the locked spec.** `knowledge/reports/<report-name>/report-spec.md`: the three groups of
+   requirements, the page plan, and per page every visual with its question, measure and dimension. Once
+   locked and signed, `/build-report` implements it and never re-designs.
+7. **Name what is not designed in this round**, with the reason, so an unresolvable claim ends as a
+   **descope** on the record rather than a hopeful signature.
 
-## Kết quả đầu ra
+## Outputs
 
-- `knowledge/reports/<tên-báo-cáo>/report-spec.md`.
-- Ba dòng kết thúc: Sản phẩm, Trạng thái, Bước tiếp theo.
+- `knowledge/reports/<report-name>/report-spec.md`, signed.
+- The advisory footer: `artifacts:` · `state:` · `suggested next:` — a suggestion, never auto-run.
 
-## Ranh giới của skill
+## Guardrails
 
-- Dựng trang báo cáo trong lượt này. Thiết kế và dựng là hai việc, dựng thuộc `/build-report`.
-- Thiết kế một visual dùng measure hoặc cột không có thật trong model.
-- Ghi spec khi học viên chưa duyệt.
-- Đề xuất biểu đồ mà không nêu được nó trả lời câu hỏi nào.
+- Building a page in this run. Design and build are two jobs; the build is `/build-report`.
+- A visual bound to a measure or column that does not exist in the model.
+- Writing the spec before it is approved.
+- A chart with no question behind it.

@@ -39,8 +39,11 @@ Repo này chứa dữ liệu, tài liệu ngữ cảnh và bộ skill cho các b
 | `/build-report` | 9 | Dựng trang báo cáo theo spec đã duyệt |
 | `/fix` | 13 | Cập nhật sản phẩm khi yêu cầu, người dùng hoặc nguồn dữ liệu thay đổi |
 
-Mỗi skill có cùng sáu phần: tình huống sử dụng, tình huống không nên dùng, yêu cầu đầu vào,
-các bước thực hiện, kết quả đầu ra, ranh giới của skill. Đọc file skill trước khi chạy để biết agent sẽ dừng lại chờ duyệt ở bước nào.
+File skill viết bằng tiếng Anh, dùng đúng thuật ngữ của bộ skill gốc. Mỗi skill có cùng sáu phần:
+`Use when` (tình huống sử dụng), `NOT for` (tình huống không nên dùng), `Required inputs` (yêu cầu
+đầu vào), `Playbook` (các bước thực hiện), `Outputs` (kết quả đầu ra), `Guardrails` (ranh giới của
+skill). Đọc file skill trước khi chạy để biết agent dừng lại chờ duyệt ở bước nào, bước đó ghi là
+**Approval gate**.
 
 ## Cấu trúc theo buổi
 
