@@ -27,6 +27,8 @@ duplicates, out-of-range values.
 2. `org-context/glossary.md` — the business vocabulary, so the fields are named the way this org names
    them.
 3. The project's business documentation where one exists, to know which fields matter to the problem.
+4. `knowledge/models/<model-name>/dictionary.md` where one already exists, read before the exit step
+   updates it. The analyst names the target model.
 
 **Never run against a source the analyst has not named.**
 
@@ -50,10 +52,18 @@ duplicates, out-of-range values.
    agreed `dq:` rules, and the **"What we take"** table naming the tables this problem will use.
 7. **Coverage — name what is not taken.** For every table NOT carried into "What we take", state one
    line of reason. Never silently skipped.
+8. **Doc-sync the Data Dictionary.** From the structure just profiled, update
+   `knowledge/models/<model-name>/dictionary.md`: one row per field of every table carried into "What we
+   take", with the table, the field, the data type, its meaning, and whether it is PII. The dictionary is
+   **derived from the card, never typed twice**. Meaning comes from the glossary and the business
+   documentation: a field nobody can explain becomes an Open Question, not a guessed row. An existing
+   dictionary is updated in place, row by row, never overwritten wholesale.
 
 ## Outputs
 
 - A source card in `knowledge/sources/`, its source-baseline section filled.
+- `knowledge/models/<model-name>/dictionary.md` covering the fields of the tables taken, each row marked
+  for PII, with the unexplained fields left as Open Questions.
 - The detailed profile, where it runs long, kept in `work/`. It never enters the card.
 - The advisory footer: `artifacts:` · `state:` · `suggested next:` — a suggestion, never auto-run.
 
@@ -63,4 +73,6 @@ duplicates, out-of-range values.
   alternative**: report the aggregate, or mask the field.
 - A conclusion about data quality with no counted evidence behind it.
 - Capturing the source baseline after the data was cleaned. A late baseline is not an independent one.
-- Overwriting a source card the analyst has not approved.
+- Overwriting a source card, or a dictionary, the analyst has not approved.
+- Guessing the meaning of a field to fill the dictionary row, or letting the dictionary drift from the
+  structure recorded in the source card.
